@@ -1,16 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QA Forge | The Grand Archive</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    <!-- Primary Meta Tags -->
+    <meta name="description"
+        content="Emir Ata Yalçın - QA Engineer & Game Architect. Explore the digital archive of quality-crafted projects, games, and applications.">
+    <meta name="author" content="Emir Ata Yalçın">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://eaylcn.com/">
+    <meta property="og:title" content="QA Forge | The Grand Archive">
+    <meta property="og:description"
+        content="Emir Ata Yalçın - QA Engineer & Game Architect. Explore the digital archive of quality-crafted projects.">
+    <meta property="og:image" content="https://eaylcn.com/images/og-preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://eaylcn.com/">
+    <meta property="twitter:title" content="QA Forge | The Grand Archive">
+    <meta property="twitter:description" content="Emir Ata Yalçın - QA Engineer & Game Architect.">
+    <meta property="twitter:image" content="https://eaylcn.com/images/og-preview.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Tailwind CSS -->
@@ -65,38 +92,54 @@
     </script>
     <style>
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
+
         .floating-element {
             animation: float 6s ease-in-out infinite;
         }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #101622;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #232f48;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #135bec;
         }
+
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
         html {
             scroll-behavior: smooth;
         }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.2.3/",
@@ -107,10 +150,12 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
+
 <body class="bg-background-dark text-white font-body selection:bg-primary selection:text-white overflow-x-hidden">
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
