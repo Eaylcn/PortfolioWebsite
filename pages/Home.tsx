@@ -283,19 +283,19 @@ const Home: React.FC = () => {
                     href={ref.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-none w-[90%] sm:w-[480px] bg-card-dark p-8 sm:p-10 rounded-[2.5rem] border border-border-dark relative group transition-all hover:-translate-y-3 hover:border-primary/50 shadow-xl snap-center cursor-pointer"
+                    className="flex-none w-[320px] sm:w-[420px] bg-card-dark p-6 sm:p-8 pt-10 sm:pt-12 rounded-[2rem] border border-border-dark relative group transition-all hover:-translate-y-3 hover:border-primary/50 shadow-xl snap-center cursor-pointer"
                   >
-                    <div className="absolute -top-6 -left-6 size-18 sm:size-20 rounded-3xl border-4 border-primary overflow-hidden shadow-glow bg-card-dark">
+                    <div className="absolute -top-4 left-4 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border-4 border-primary overflow-hidden shadow-glow bg-card-dark z-10">
                       <img src={ref.avatar} alt={ref.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="material-symbols-outlined text-primary text-xl">open_in_new</span>
+                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="material-symbols-outlined text-primary text-lg">open_in_new</span>
                     </div>
-                    <div className="space-y-5 pt-6">
-                      <p className="text-white text-base sm:text-lg font-medium italic leading-relaxed">"{ref.text}"</p>
+                    <div className="space-y-4">
+                      <p className="text-white text-sm sm:text-base font-medium italic leading-relaxed">"{ref.text}"</p>
                       <div>
-                        <cite className="not-italic text-white font-black uppercase tracking-widest text-sm">— {ref.name}</cite>
-                        <p className="text-primary text-[10px] font-bold uppercase tracking-[0.3em] mt-1">{ref.role}</p>
+                        <cite className="not-italic text-white font-black uppercase tracking-widest text-xs sm:text-sm">— {ref.name}</cite>
+                        <p className="text-primary text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] mt-1">{ref.role}</p>
                       </div>
                     </div>
                   </a>
