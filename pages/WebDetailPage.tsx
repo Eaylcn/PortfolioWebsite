@@ -9,7 +9,7 @@ const WebDetailPage: React.FC = () => {
    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
    useEffect(() => {
-      fetch('web.json')
+      fetch('/web.json')
          .then(res => res.json())
          .then((data: WebProject[]) => {
             const found = data.find(p => p.slug === slug);

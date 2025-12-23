@@ -9,7 +9,7 @@ const GameDetailPage: React.FC = () => {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('games.json')
+    fetch('/games.json')
       .then(res => res.json())
       .then((data: GameProject[]) => {
         const found = data.find(p => p.slug === slug);

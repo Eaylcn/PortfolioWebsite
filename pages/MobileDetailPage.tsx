@@ -9,7 +9,7 @@ const MobileDetailPage: React.FC = () => {
    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
    useEffect(() => {
-      fetch('mobile.json')
+      fetch('/mobile.json')
          .then(res => res.json())
          .then((data: MobileProject[]) => {
             const found = data.find(p => p.slug === slug);
