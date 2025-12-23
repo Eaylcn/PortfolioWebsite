@@ -69,7 +69,7 @@ const Skills: React.FC = () => {
                   Establish Connection
                 </Link>
                 <a
-                  href="/cv/emir-ata-yalcin-cv.pdf"
+                  href="/cv/19.12 - Emir Ata Yalcin.pdf"
                   download="Emir_Ata_Yalcin_CV.pdf"
                   className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-12 py-5 rounded-[2rem] font-black text-xs transition-all flex items-center gap-4 active:scale-95 uppercase tracking-widest"
                 >
