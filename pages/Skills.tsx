@@ -69,12 +69,13 @@ const Skills: React.FC = () => {
                   Establish Connection
                 </Link>
                 <a
-                  href="/cv/19.12 - Emir Ata Yalcin.pdf"
-                  download="Emir_Ata_Yalcin_CV.pdf"
+                  href="/cv/emir-ata-yalcin-cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-12 py-5 rounded-[2rem] font-black text-xs transition-all flex items-center gap-4 active:scale-95 uppercase tracking-widest"
                 >
-                  <span className="material-symbols-outlined text-lg">download</span>
-                  Download Scroll (CV)
+                  <span className="material-symbols-outlined text-lg">description</span>
+                  View Scroll (CV)
                 </a>
               </div>
             </div>
