@@ -1,0 +1,116 @@
+[
+  {
+    "id": "m-tuty",
+    "slug": "tuty",
+    "title": "Tuty",
+    "category": "Mobile",
+    "status": "In Development",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "role": "Solo Developer / Full-Stack Mobile Architect",
+    "description": "Your beauty collection, intelligently organized. A smart inventory system for makeup and skincare.",
+    "longDescription": "Tuty was born from the need to manage makeup and skincare collections for users who feel they are losing control. It's an intelligent mobile application designed to solve the chaos of duplicate purchases and missed expiration dates. Tuty provides real-time awareness: what you have, what is running out, and what needs to be replaced. It eventually learns user habits to provide more accurate predictions and suggestions, with AI Assistant Lily at the heart of its future vision.",
+    "tags": [
+      "Flutter",
+      "Firebase",
+      "Dart",
+      "Beauty-Tech"
+    ],
+    "imageUrl": "/projects/mobile/Tuty.PNG",
+    "techStack": [
+      "Flutter",
+      "Dart",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "Riverpod",
+      "OpenBeautyFacts API"
+    ],
+    "features": [
+      "Barcode Scanning for automatic product detection",
+      "Smart Expiration Date (SKT) Alerts",
+      "Color & Shade Code Tracking",
+      "Stash / Wishlist Separation",
+      "Daily Missions & Gamified Engagement",
+      "AI Assistant Lily (Premium / In Dev)",
+      "Dark / Light Mode & Multi-language Support"
+    ],
+    "systems": [
+      "Offline-first data architecture",
+      "Adaptive product lifespan calculator",
+      "Usage-based prediction system (Premium)",
+      "Clean Architecture (Feature-based modular structure)",
+      "Premium feature gating"
+    ],
+    "roadmap": [
+      "Lily AI Integration",
+      "Push Notification System",
+      "Cloud Storage for Product Images",
+      "Collection Sharing & Price Comparison",
+      "Purchase Reminders & Widget Support"
+    ],
+    "screenshots": [
+      "/projects/mobile/Tuty-1.PNG",
+      "/projects/mobile/Tuty-2.PNG",
+      "/projects/mobile/Tuty-3.PNG",
+      "/projects/mobile/Tuty-4.PNG"
+    ],
+    "links": {}
+  },
+  {
+    "id": "m-quantum",
+    "slug": "quantum-agent",
+    "title": "Quantum Agent",
+    "category": "Mobile",
+    "status": "In Development",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "role": "Game Designer & Developer",
+    "description": "A mobile swipe game about time travel where every decision alters the timeline.",
+    "longDescription": "Quantum Agent is a narrative-driven decision game designed for mobile. Players swipe left or right on event cards to manage agents and manipulate time. Every choice has lasting effects on agent stats and the stability of the timeline. The game blends branching storytelling with risk management and resource control.",
+    "tags": [
+      "Unity",
+      "C#",
+      "Mobile",
+      "Narrative"
+    ],
+    "imageUrl": "/projects/mobile/QuantumAgent.PNG",
+    "techStack": [
+      "Unity",
+      "C#",
+      "Narrative Trees",
+      "Mobile Input"
+    ],
+    "features": [
+      "Swipe-based decision making",
+      "Branching narrative architecture",
+      "Agent and Resource management",
+      "Timeline impact tracking",
+      "Event-based card pool",
+      "Risk-based mission failure scenarios"
+    ],
+    "systems": [
+      "Mobile swipe input manager",
+      "Recursive decision tree system",
+      "Agent stat management",
+      "Dynamic timeline stability calculation",
+      "Event pool and probability scaling"
+    ],
+    "roadmap": [
+      "Completion of MVP decision sets",
+      "Expansion of agent status effects",
+      "Timeline stability visualization",
+      "Unlockable event cards and progression",
+      "UI/UX feedback pass",
+      "Atmospheric audio integration"
+    ],
+    "screenshots": [
+      "/projects/mobile/QuantumAgent-1.PNG",
+      "/projects/mobile/QuantumAgent-2.PNG"
+    ],
+    "links": {}
+  }
+]

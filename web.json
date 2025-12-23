@@ -1,0 +1,129 @@
+[
+  {
+    "id": "w-khaeltheron",
+    "slug": "khaeltheron",
+    "title": "Khaeltheron",
+    "category": "Web",
+    "status": "Live",
+    "platforms": [
+      "Web"
+    ],
+    "role": "Creative Developer & Systems Designer",
+    "description": "A dark fantasy lore-first digital archive and worldbuilding showcase.",
+    "longDescription": "Khaeltheron was designed as a story-driven web experience set in a dark fantasy atmosphere. The goal was to create a digital showcase for an expanding universe, acting more as a digital grimoire than a standard website. I architected the concept, narrative structure, visual flow, and end-to-end user experience, focusing on immersive lore and atmospheric UI. It serves as a technical study on how digital interfaces can evoke specific narrative moods.",
+    "tags": [
+      "HTML",
+      "CSS",
+      "Lore-Building",
+      "Narrative-UX"
+    ],
+    "imageUrl": "/projects/web/KaelTheron.PNG",
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Custom Layouts",
+      "Typography Systems"
+    ],
+    "features": [
+      "Universe-centric page architecture",
+      "Atmosferic UI (Dark Fantasy Tone)",
+      "Lore-based content hierarchy",
+      "Exploration-driven user discovery",
+      "Custom grimoire-style visual components"
+    ],
+    "screenshots": [
+      "/projects/web/KaelTheron-1.PNG",
+      "/projects/web/KaelTheron-2.PNG",
+      "/projects/web/KaelTheron-3.PNG"
+    ],
+    "links": {
+      "live": "https://khaeltheron.vercel.app"
+    }
+  },
+  {
+    "id": "w-grand-archive",
+    "slug": "qa-forge-archive",
+    "title": "The Grand Archive",
+    "category": "Web",
+    "status": "Live",
+    "platforms": [
+      "Web",
+      "AI"
+    ],
+    "role": "Full-Stack Architect & UI Designer",
+    "description": "An RPG-themed professional portfolio integrated with Gemini AI for a sentient-style experience.",
+    "longDescription": "The Grand Archive (QA Forge) is a high-fidelity professional showcase designed to bridge the gap between technical QA engineering and creative game design. It features a custom RPG-inspired UI system, interactive 'Character Sheets' for technical skills, and a sentient AI companion, the 'Data Drake', powered by the Gemini API. The project demonstrates advanced React patterns, complex Tailwind styling, and seamless AI integration.",
+    "tags": [
+      "React",
+      "Gemini-API",
+      "Tailwind",
+      "TypeScript"
+    ],
+    "imageUrl": "/projects/web/thegrandarchive.PNG",
+    "techStack": [
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Gemini API",
+      "React Router"
+    ],
+    "features": [
+      "Sentient AI Companion (Data Drake)",
+      "RPG-Inspired Stat & Inventory System",
+      "Lore-first narrative architecture",
+      "Responsive High-Fidelity Dashboard UI",
+      "Dynamic Quest Log for project archiving"
+    ],
+    "screenshots": [
+      "/projects/web/thegrandarchive.PNG",
+      "/projects/web/thegrandarchive-1.PNG",
+      "/projects/web/thegrandarchive-2PNG.PNG"
+    ],
+    "links": {
+      "github": "https://github.com/Eaylcn/QA-Forge"
+    }
+  },
+  {
+    "id": "w-ponyfart",
+    "slug": "ponyfart",
+    "title": "PonyFart",
+    "category": "Web",
+    "status": "Live",
+    "platforms": [
+      "Web"
+    ],
+    "role": "Solo Developer (Vibecoding & Logic)",
+    "description": "A playful experimental web game developed with a high-creativity vibe-coding approach.",
+    "longDescription": "PonyFart is a fun-oriented web game developed using a 'vibecoding' approach. The project prioritizes rapid production, creative flow, and a humorous experience over rigid technical structures. It features browser-based gameplay with a focus on simple yet fluid input mechanics, serving as a playground for interactive web experiments and quick prototyping.",
+    "tags": [
+      "JavaScript",
+      "WebGame",
+      "Vibecoding",
+      "GitHub-Pages"
+    ],
+    "imageUrl": "/projects/web/PonyFart.PNG",
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "GitHub Pages"
+    ],
+    "features": [
+      "Browser-based interactive gameplay",
+      "Fluid and responsive input system",
+      "Lightweight architecture for instant loading",
+      "Humor-driven UX and visual style",
+      "Continuous deployment via GitHub"
+    ],
+    "screenshots": [
+      "/projects/web/PonyFart-1.PNG",
+      "/projects/web/PonyFart-2.PNG",
+      "/projects/web/PonyFart-3.PNG"
+    ],
+    "links": {
+      "live": "https://eaylcn.github.io/PonyFart/",
+      "github": "https://github.com/Eaylcn/PonyFart"
+    }
+  }
+]

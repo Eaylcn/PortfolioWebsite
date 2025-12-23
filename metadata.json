@@ -1,0 +1,8 @@
+
+{
+  "name": "QA Forge - The Grand Archive",
+  "description": "A high-fidelity RPG-themed portfolio for a Senior QA Engineer and Game Developer, featuring character stats, quest logs, and secure transmission logs.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

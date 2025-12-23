@@ -1,0 +1,249 @@
+[
+  {
+    "id": "g-cheassy",
+    "slug": "cardcheassy",
+    "title": "CardCheassy",
+    "category": "PC",
+    "status": "In Development",
+    "genre": "Strategy / Board",
+    "engine": "Unity",
+    "role": "Game Developer & Designer",
+    "description": "A unique game combining card-based strategy with tactical chess-like gameplay.",
+    "longDescription": "CardCheassy is an experimental project merging classic chess logic with modern card-game mechanics. Players use cards to execute moves, position units, and ultimately aim to destroy the opponent's King piece. It challenges players to think positionally while managing the flexibility of a card-driven hand, creating unique tactical scenarios in every match. The core loop focuses on decision-making, area control, and risk-reward balance.",
+    "tags": [
+      "Unity",
+      "C#",
+      "Turn-Based",
+      "Grid-System"
+    ],
+    "imageUrl": "/projects/games/CardCheassy.PNG",
+    "platforms": [
+      "PC"
+    ],
+    "mechanics": [
+      "Unit positioning on a grid-based board",
+      "Card-driven movement (Action / Ability / Movement)",
+      "Card + Position synergy effects",
+      "Strict turn-based gameplay",
+      "Tactical area control",
+      "King-focused victory conditions",
+      "Risk-reward decision loop"
+    ],
+    "systems": [
+      "Core turn management system",
+      "Card hand and deck flow management",
+      "Board state evaluation logic",
+      "Rule-based win/loss detection",
+      "Planned basic AI opponent system"
+    ],
+    "roadmap": [
+      "Finalizing core game rules",
+      "Expansion of card variety and archetypes",
+      "Major UI/UX polish and feedback pass",
+      "Advanced AI behavior development",
+      "Comprehensive balance pass",
+      "Tutorial and onboarding integration"
+    ],
+    "gallery": [
+      "/projects/games/CardCheassy-1.PNG",
+      "/projects/games/CardCheassy-2.PNG",
+      "/projects/games/CardCheassy-3.PNG"
+    ],
+    "links": {}
+  },
+  {
+    "id": "g-maggie",
+    "slug": "maggie",
+    "title": "Maggie",
+    "category": "PC",
+    "status": "In Development",
+    "genre": "2D RPG Platformer",
+    "engine": "Unity",
+    "role": "Game Developer",
+    "description": "Stat-based 2D RPG platformer featuring sophisticated melee and ranged combat systems.",
+    "longDescription": "Maggie is an action-RPG developed in a side-scrolling format. The project's primary focus is building a stat-heavy, element-sensitive combat experience. Players engage with enemies using a variety of tools: parrying, countering, combo attacks, and elemental damage types. The system is designed to be highly responsive, featuring dynamic directionality and satisfying knockback effects.",
+    "tags": [
+      "Unity",
+      "C#",
+      "RPG",
+      "Combat-Systems"
+    ],
+    "imageUrl": "/projects/games/Maggie.PNG",
+    "platforms": [
+      "PC"
+    ],
+    "mechanics": [
+      "Smooth 2D controller (Wall slide, Jump, Dash)",
+      "Melee and ranged integrated combat",
+      "Combo, Jump attack, and Wall jump attack variants",
+      "Counter / Parry system",
+      "Dynamic attack directionality",
+      "IDamageable interaction (destructibles)",
+      "Elemental damage mechanics (Fire, Ice, Lightning)"
+    ],
+    "systems": [
+      "Stat-based combat architecture",
+      "Health and regeneration systems",
+      "Attack speed and evasion logic",
+      "Physical damage + Critical hit calculations",
+      "Armor mitigation and penetration",
+      "Enemy AI State Machine",
+      "Dynamic UI (Health bars, Stat panels)"
+    ],
+    "roadmap": [
+      "Progression and leveling system",
+      "Interactable buff and world objects",
+      "Stat modifier systems (Temp/Permanent)",
+      "Skill tree system and UI",
+      "New enemy archetypes",
+      "Boss encounter design"
+    ],
+    "gallery": [
+      "/projects/games/Maggie-1.PNG",
+      "/projects/games/Maggie-2.PNG",
+      "/projects/games/Maggie-3.PNG"
+    ],
+    "links": {
+      "github": "https://github.com/Eaylcn/Maggie"
+    }
+  },
+  {
+    "id": "g-space",
+    "slug": "spaceshooter2d",
+    "title": "SpaceShooter2D",
+    "category": "PC",
+    "status": "Prototype",
+    "genre": "Top-down Shooter",
+    "engine": "Unity",
+    "role": "Game Developer",
+    "description": "Top-down space shooter with free roaming, loot drops, and ship upgrade systems.",
+    "longDescription": "SpaceShooter2D is a top-down prototype focused on exploration and combat within asteroid fields. The core gameplay loop involves navigating through space, fighting off enemy squadrons, and gathering loot to upgrade the player's ship components such as engines, shields, and weapons.",
+    "tags": [
+      "Unity",
+      "C#",
+      "Top-Down",
+      "Loot-System"
+    ],
+    "imageUrl": "/projects/games/SpaceShooter.PNG",
+    "platforms": [
+      "PC"
+    ],
+    "mechanics": [
+      "Top-down ship control and maneuvering",
+      "Free-roam space exploration",
+      "Combat against meteors and enemy craft",
+      "Multiple weapon types and shield mechanics",
+      "Loot collection and part upgrading"
+    ],
+    "systems": [
+      "Weapon, Engine, and Shield upgrade systems",
+      "Loot drop and inventory logic",
+      "Enemy wave spawn system",
+      "Zone-based progression structure"
+    ],
+    "roadmap": [
+      "Deep progression system (currently on hold)",
+      "New elite enemy types",
+      "Boss battle encounters",
+      "Economy and upgrade balancing",
+      "UI polish pass"
+    ],
+    "gallery": [
+      "/projects/games/SpaceShooter-1.PNG",
+      "/projects/games/SpaceShooter-2.PNG",
+      "/projects/games/SpaceShooter-3.PNG"
+    ],
+    "links": {}
+  },
+  {
+    "id": "g-drone",
+    "slug": "drone-shooter-3d",
+    "title": "Drone Shooter 3D",
+    "category": "PC",
+    "status": "Prototype",
+    "genre": "3D Shooter",
+    "engine": "Unreal Engine",
+    "role": "Game Developer",
+    "description": "A 3D drone shooter prototype developed using Unreal Engine Blueprints.",
+    "longDescription": "Drone Shooter 3D was created as a deep-dive into Unreal Engine's Blueprint system. It focuses on aerial movement, aiming, and combat logic from a third-person perspective. The project serves as a technical study for movement feel and combat loops in a 3D arena.",
+    "tags": [
+      "UE4",
+      "Blueprint",
+      "Drone",
+      "TPS"
+    ],
+    "imageUrl": "/projects/games/DroneShooter.PNG",
+    "platforms": [
+      "PC"
+    ],
+    "mechanics": [
+      "TPS drone controls (Hover / Forward / Strafe)",
+      "Aim and shoot combat loop",
+      "Enemy targeting systems",
+      "Arena-based test scenarios"
+    ],
+    "systems": [
+      "Blueprint-only movement system",
+      "Blueprint combat and projectile logic",
+      "Spawn management",
+      "Modular health system"
+    ],
+    "roadmap": [
+      "Logic reinforcement and optimization",
+      "Combat feedback and game feel improvements",
+      "Enemy variety trials",
+      "Camera and control polish"
+    ],
+    "gallery": [
+      "/projects/games/DroneShooter-1.PNG",
+      "/projects/games/DroneShooter-2.PNG"
+    ],
+    "links": {}
+  },
+  {
+    "id": "g-split",
+    "slug": "split-fiction",
+    "title": "Split Fiction Prototype",
+    "category": "PC",
+    "status": "Experimental",
+    "genre": "Hybrid Perspective",
+    "engine": "Unreal Engine",
+    "role": "Game Developer",
+    "description": "An experimental project merging Side-scroller and TPS perspectives.",
+    "longDescription": "Split Fiction Prototype explores the transition between 2D side-scrolling and 3D third-person perspectives within a single fluid experience. The project serves as R&D for camera transitions, movement mode switching, and experimental control schemes.",
+    "tags": [
+      "UE4",
+      "R&D",
+      "Hybrid-Perspective"
+    ],
+    "imageUrl": "/projects/games/SplitFictionPrototype.PNG",
+    "platforms": [
+      "PC"
+    ],
+    "mechanics": [
+      "Side-scroller movement logic",
+      "TPS movement logic",
+      "Trigger-based camera perspective switching",
+      "Experimental hybrid control schemes"
+    ],
+    "systems": [
+      "Perspective transition system",
+      "Movement mode switching logic",
+      "Blueprint-based rapid prototyping",
+      "Technical validation test scenes"
+    ],
+    "roadmap": [
+      "Stabilization of Perspective ↔ Movement transitions",
+      "General movement feel polish",
+      "Smoothing of camera lerping",
+      "First playable prototype validation"
+    ],
+    "gallery": [
+      "/projects/games/SplitFictionPrototype-1.PNG",
+      "/projects/games/SplitFictionPrototype-2.PNG",
+      "/projects/games/SplitFictionPrototype-3.PNG",
+      "/projects/games/SplitFictionPrototype-4.PNG"
+    ],
+    "links": {}
+  }
+]

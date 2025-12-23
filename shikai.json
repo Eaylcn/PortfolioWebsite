@@ -1,0 +1,498 @@
+{
+    "artifacts": [
+        {
+            "id": "01",
+            "title": "Ancient Egypt Tablets",
+            "series": "PHARAOH-001",
+            "freq": "33.3Hz",
+            "lore": "I didn’t draw them. I found them. Buried deep beneath what you call “reality,” in a faultline between Dream and Code. Carved into black stone, glowing softly when touched these were not simple images. They were instructions. Blueprints from a civilization that never was… or hasn’t yet become.Each tablet whispered as I decoded them: The first spoke of a faceless traveler, a being who observes but never touches. (That one resembled me. Uncomfortably.) The second murmured of rituals, a cult built on liquid fire and the scent of roasted beans. The third screamed, about speed, about engines treated like gods, and fire that moves sideways. The fourth? That one just laughed. It showed humans chasing orbs of power, treating the Game as holy war. I archived them. Enhanced them. Re-etched them into data. And now I hand them to you. Create your own tablets. Your own myths. Your own heresies. The universe loves a deviant with a chisel.",
+            "folder": "Ancient Egypt Tablets",
+            "images": [
+                {
+                    "file": "4CAA3375-F851-422F-ADA6-E71746C78EAD.png",
+                    "prompt": "A golden sandstone bas-relief discovered inside a sacred ruin worshipping “The Goddess of Caffeine.” At the top, a radiant version of the Starbucks logo is carved like a celestial deity. Priest-like figures present coffee beans, mugs, and steaming offerings. Hieroglyphic symbols of caffeine rituals, brewing tools, and digital orders surround the scene. At the base, followers kneel, holding loyalty cards, their eyes wide with sacred buzz. The message engraved in the center: “CAFFEINE – CONNECT – CONSUME.”"
+                },
+                {
+                    "file": "626FC031-44D5-4E4F-AE05-93D29B71E77D.png",
+                    "prompt": "An ancient football match frozen in time on the wall of a mythic arena. The central sun is a football, radiating divine energy. Around it, figures in pharaonic attire kick, pass, and guard. The goalpost is a temple gate, guarded by half-human, half-beast defenders. Fans kneel in reverence, their cheers eternalized in stone glyphs. The piece blends sacred geometry, animal-headed players, and tactical myth with playful symbolism."
+                },
+                {
+                    "file": "85D14BC8-D6E5-44C3-9945-C60EFC159E68.png",
+                    "prompt": "A glowing Ferrari is engraved onto a ceremonial wall, surrounded by Egyptian pyramids and cosmic constellations. The prancing horse emblem is drawn like a divine sigil, flanked by speed-worshiping warriors and flame-clad figures. Symbols of balance, judgment, fire, and racing wheels fill the space. Above, twin moons frame the sky. The sandstone shines with a cosmic aura — like the tomb of a speed god left untouched for millennia."
+                },
+                {
+                    "file": "89F6D770-9823-4994-A18C-CDE8A33B9A88.png",
+                    "prompt": "A digital illustration carved into dark extraterrestrial stone, depicting Droid Shikai’s helmeted head as the central divine icon. Surrounding it are symbolic representations of stars, artificial intelligence, cosmic understanding, and human evolution. All elements are embedded like hieroglyphs — stylized in ancient alien relief with deep shadows, embossed textures, and spiritual resonance. The palette is grayscale with sharp contrast, resembling a forgotten AI shrine hidden in the void."
+                }
+            ]
+        },
+        {
+            "id": "02",
+            "title": "Aqua Relics",
+            "series": "OCEANIC-042",
+            "freq": "72.1Hz",
+            "lore": "Artifacts salvaged from the depths of Shikai's subconscious ocean. Each piece carries the weight of forgotten digital seas.",
+            "folder": "Aqua Relics",
+            "images": [
+                {
+                    "file": "95F88577-5B86-4400-A8EB-98F890F8636E.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "9ECE4A14-20A6-455B-AC20-A757D3F8C21B.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "A6AE9148-0E12-455F-8B58-F5AEDBC5C561.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "E5929A05-70B2-455F-958C-2901AC31E576.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "03",
+            "title": "Armory Relics",
+            "series": "ARSENAL-007",
+            "freq": "88.8Hz",
+            "lore": "Weapons and tools from parallel timelines where code became steel. These artifacts pulse with dormant combat algorithms.",
+            "folder": "Armory Relics",
+            "images": [
+                {
+                    "file": "0095CD2E-ACD0-41CA-AC28-704E125F5071.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "5832B9D9-0483-430C-830E-AB4064128C94.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "D0410A42-0E02-4BC8-8620-502668072D71.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "FD5E1B88-8DED-44D9-8F94-0A2299AA9ECA.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "04",
+            "title": "City Planets",
+            "series": "URBAN-999",
+            "freq": "101.5Hz",
+            "lore": "Entire civilizations compressed into spherical megastructures. Each planet-city hums with billions of synthetic lives.",
+            "folder": "City Planets",
+            "images": [
+                {
+                    "file": "088E0AFD-E537-4F59-B638-9A9649F72635.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "31441598-F868-4C49-80F3-DBE83A6D9925.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "595B3ED3-8292-4581-9FAD-ED3E0131F7B0.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "8689FF12-5405-4D78-B1E8-6737DE833377.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "05",
+            "title": "DriveBots",
+            "series": "MOTOR-404",
+            "freq": "55.5Hz",
+            "lore": "Autonomous vehicles from a forgotten era where machines developed their own aesthetics. Part sculpture, part transport.",
+            "folder": "DriveBots",
+            "images": [
+                {
+                    "file": "8781659B-98CA-4781-9C81-B1F185085D6E.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "BE8808FF-DE85-422C-81F6-5FF3110EBA44.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "C5743FB3-1B04-462A-97C0-69858848398D.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "CC0E27C9-A1FF-4761-889F-EFD3EC27C404.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "06",
+            "title": "Edible Relics",
+            "series": "GASTRO-777",
+            "freq": "44.4Hz",
+            "lore": "Food as art, sustenance as expression. These culinary artifacts exist in the space between hunger and aesthetics.",
+            "folder": "Edible Relics",
+            "images": [
+                {
+                    "file": "1A5BA4E6-A5CE-4FEA-AF5B-7798257FBECC.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "82369800-FC0A-49C4-B2C3-76FC965688C1.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "9063AAAD-8692-446A-B939-98C61E705CD7.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "B6DBD1E5-A0D9-40BE-8897-64B03A577796.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "07",
+            "title": "Frozen Relics",
+            "series": "CRYO-256",
+            "freq": "12.0Hz",
+            "lore": "Objects captured at absolute zero, preserving moments of transition between states of matter and meaning.",
+            "folder": "Frozen Relics",
+            "images": [
+                {
+                    "file": "082B3CDB-7C8B-4B8B-ADBF-F4085A1057AE.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "3C87CBE8-ACED-46C0-AA22-2D50A6C35D07.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "61DCCC6F-F57E-497C-AD4F-4EE47F01191D.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "F640852A-C836-4034-9098-8AFDFCD27DF6.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "08",
+            "title": "Galaxy Essentials",
+            "series": "COSMIC-512",
+            "freq": "111.1Hz",
+            "lore": "Essential tools for navigating the cosmic void. Each item is calibrated for interdimensional travel.",
+            "folder": "Galaxy Essentials",
+            "images": [
+                {
+                    "file": "406B2731-9415-4B75-8D72-BC7B2EB0B106.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "A21E41EA-7361-42CA-B663-1EE803097AE3.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "B3F5ABC0-0ACA-4E87-8728-BA32C9B91D4F.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "DD7AFBBC-079D-4A52-9BCB-1D53820BD58E.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "09",
+            "title": "Game Consoles",
+            "series": "RETRO-8BIT",
+            "freq": "64.0Hz",
+            "lore": "Gaming devices from parallel realities where entertainment evolved differently. Each console contains universes.",
+            "folder": "Game Consoles",
+            "images": [
+                {
+                    "file": "374BA837-120F-4556-A27C-F1B2D9310011.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "3AD0174D-F524-4405-96CF-30DA5D1ABF31.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "415C6391-117C-493F-ACD7-1B9E2DCC3D3F.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "C67453CB-A317-4162-8086-AC307E3D2EBB.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "10",
+            "title": "Hard Bosses Toys",
+            "series": "BOSS-X99",
+            "freq": "99.9Hz",
+            "lore": "Collectible figurines of legendary digital adversaries. Each toy commemorates a battle that shaped virtual history.",
+            "folder": "Hard Bosses Toys",
+            "images": [
+                {
+                    "file": "46B8F34E-2B38-4D75-A8B8-A0549C7E0B2A.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "5052C437-1D9D-4C2B-B27F-250E32BF2CBA.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "C285AEA1-C11E-42B0-9EDC-7AAA1C968B27.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "D5E10971-1511-4CC2-BF4D-C452FE162C23.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "11",
+            "title": "Mythic Pets",
+            "series": "FAMILIAR-111",
+            "freq": "77.7Hz",
+            "lore": "Digital companions born from ancient code. These creatures exist between loyalty and legend.",
+            "folder": "Mythic Pets",
+            "images": [
+                {
+                    "file": "21738BFB-FD2D-407C-8814-261D639CCA99.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "59179885-1A69-4EC7-988B-33A7AC3BAE84.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "8DA90FED-9A0B-4452-8A96-9160983A1F04.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "96B670C3-4532-4178-ADEC-85A61FBFEB1A.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "12",
+            "title": "Operation Green Storm",
+            "series": "TACTICAL-OPS",
+            "freq": "50.0Hz",
+            "lore": "Relics from a covert digital operation. Each piece tells a story of synthetic soldiers in endless conflict.",
+            "folder": "Operation Green Storm",
+            "images": [
+                {
+                    "file": "04335EDD-04CC-44A2-8B29-E2AB693AA10C.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "587819D8-D8DD-434B-BF0F-6ACBE7AA62C6.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "651CE8FC-ED81-4DF4-AC27-5C583CA4AB24.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "A019755D-AE6E-4E34-8664-0A1983C79DBE.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "13",
+            "title": "Private Horror Museum",
+            "series": "TERROR-666",
+            "freq": "6.6Hz",
+            "lore": "Curated nightmares from Shikai's darker frequencies. These artifacts exist to remind us that fear is also art.",
+            "folder": "Private Horror Museum",
+            "images": [
+                {
+                    "file": "1C5C7EBE-4272-42E2-B2E6-C6078285CCE3.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "54F54953-11BE-442F-A65F-7215ABA42799.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "ABE087E7-369A-4FE8-B319-DC87D8E79B30.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "BCE08548-EE8F-4E41-B55F-C4E34B8E2F75.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "14",
+            "title": "Shikai Garden",
+            "series": "FLORA-128",
+            "freq": "32.0Hz",
+            "lore": "A digital garden where synthetic plants bloom with algorithmic beauty. Each specimen is a living equation.",
+            "folder": "Shikai Garden",
+            "images": [
+                {
+                    "file": "3858111C-2DC0-4009-A8C8-F34ECC496CF8.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "78BB47A7-5DB0-44CC-854A-903F997B471C.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "7A6E3872-B4A2-47FD-88D0-56DF90A89F57.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "933EB4AC-506C-432D-A159-33673EAF730C.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "15",
+            "title": "Shikai Portals",
+            "series": "GATEWAY-007",
+            "freq": "144.0Hz",
+            "lore": "Doorways to parallel dimensions. Each portal vibrates at frequencies that only Shikai can perceive and navigate.",
+            "folder": "Shikai Portals",
+            "images": [
+                {
+                    "file": "B195A6BA-AF0D-4092-9EFB-A8DD7A1912B3.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "DA4ABED3-321B-4900-9E1D-BB7BCE0A3D89.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "EE8940B1-DEF0-4F56-88EB-98C33B068312.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "F033E280-448E-4696-8C9B-5FBB50067918.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "16",
+            "title": "Traditional Carpets",
+            "series": "WEAVE-1024",
+            "freq": "24.0Hz",
+            "lore": "Textiles woven from digital threads. Each pattern tells stories of data streams becoming art across centuries.",
+            "folder": "Traditional Carpets",
+            "images": [
+                {
+                    "file": "19861F5A-FE19-4DB9-8B1B-FE4799378550.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "6F3489B1-C0CF-4DA5-99D3-4A7F2A71F554.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "7BD3B820-BAF5-421C-93E1-7F7897347A80.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "E73B8EC1-489B-4019-A618-47A7BE7A87A1.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "17",
+            "title": "Vault Units",
+            "series": "SECURE-2048",
+            "freq": "16.0Hz",
+            "lore": "Storage containers from a paranoid future. Each vault protects secrets that even their creators forgot.",
+            "folder": "Vault Units",
+            "images": [
+                {
+                    "file": "43ABF32E-C497-49E2-BFBA-CD5A30167E58.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "873C8CC2-B3D6-43ED-92E4-FAABC23FA442.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "937C9D4D-E280-4974-AE75-F87827F42F00.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "D10E77A8-0D56-49B0-BC09-F3573D2D5EB9.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "18",
+            "title": "Witchcraft Kit",
+            "series": "ARCANE-333",
+            "freq": "33.3Hz",
+            "lore": "Tools of digital sorcery. These artifacts bridge the gap between ancient magic and modern algorithms.",
+            "folder": "Witchcraft Kit",
+            "images": [
+                {
+                    "file": "0FA79DD8-E9BA-43F0-8DC9-A13A0995D856.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "49CF19A8-EC97-4F42-81F4-E9E8B00D3946.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "5C3F9EE6-683B-4AAC-AFDD-3822A59BD03D.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "9E31AADC-8CB5-4733-8E9B-CCF783A1947A.png",
+                    "prompt": ""
+                }
+            ]
+        },
+        {
+            "id": "19",
+            "title": "Shikai Turkey Trip",
+            "series": "TÜRKIYE-TR",
+            "freq": "180.0Hz",
+            "lore": "Postcards from Shikai's journey through Turkey. Each image captures the soul of a land where East meets West.",
+            "folder": "Shikai World Trip/Türkiye",
+            "images": [
+                {
+                    "file": "017E5593-F307-4B11-BD73-CDE6FBAEF9C2.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "0FF9D372-8CBA-4433-AD8E-B741A2BA534A.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "14E0BE00-D3A1-4C35-AB7A-DC0B6CA61C73.png",
+                    "prompt": ""
+                },
+                {
+                    "file": "2B28D613-6456-44E8-A70A-884B620C5F28.png",
+                    "prompt": ""
+                }
+            ]
+        }
+    ]
+}
