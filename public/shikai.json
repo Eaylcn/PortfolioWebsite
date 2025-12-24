@@ -493,6 +493,188 @@
                     "prompt": ""
                 }
             ]
+        },
+        {
+            "id": "20",
+            "title": "Coins Of The Cosmic Mint",
+            "series": "COSMIC-MINT",
+            "freq": "42.0Hz",
+            "lore": "Currency from dimensions where value is measured in stardust and dreams. Each coin opens doors to realities unknown.",
+            "folder": "Coins Of The Cosmic Mint",
+            "images": [
+                {
+                    "file": "135EB2B5-2EC9-4494-8E5A-43D81D3E5997.PNG",
+                    "prompt": "A vertical 9:16 Pixar-style 3D render of a collectible coin, displayed on a clean white background. The coin has a unique shape, made of cosmic materials, and features symbolic design elements. It appears floating dynamically. Style is clean, otherworldly, and elegant. Series: COINS OF THE COSMIC MINT."
+                },
+                {
+                    "file": "7F9B0175-74A7-4B00-AF01-11D756F18050.PNG",
+                    "prompt": "A vertical 9:16 Pixar-style 3D render of a collectible coin, displayed on a clean white background. The coin has a unique cosmic design with ethereal glow. Style is clean and elegant. Series: COINS OF THE COSMIC MINT."
+                },
+                {
+                    "file": "D79439EC-AB70-438A-8791-E08DB8C07346.PNG",
+                    "prompt": "A vertical 9:16 Pixar-style 3D render of a collectible coin on a clean white background. The coin features otherworldly symbols and materials. Series: COINS OF THE COSMIC MINT."
+                },
+                {
+                    "file": "E8E50686-2BA9-4A3B-A424-FE61693489DE.PNG",
+                    "prompt": "A vertical 9:16 Pixar-style 3D render of a collectible cosmic coin on a clean white background. Elegant and otherworldly design. Series: COINS OF THE COSMIC MINT."
+                }
+            ]
+        },
+        {
+            "id": "21",
+            "title": "Shikai Arena Relics",
+            "series": "ARENA-DUEL",
+            "freq": "95.0Hz",
+            "lore": "Frozen moments of legendary battles. Each statue captures the clash of titans in eternal combat.",
+            "folder": "Shikai Arena Relics",
+            "images": [
+                {
+                    "file": "035D0E32-DD32-42D0-83FF-CD50FFCFC259.PNG",
+                    "prompt": "A collectible 3D-rendered statue of two combatants mid-fight. The scene is frozen in action on a toy-sized arena ring, sculpted in Pixar-style stylized realism. Each figure reflects a distinct theme, captured in a dynamic pose. Soft shadows, clean white background. Series: SHIKAI ARENA RELICS."
+                },
+                {
+                    "file": "206D54EB-4D0F-4FDA-A3A7-16A050AB897F.PNG",
+                    "prompt": "A collectible 3D-rendered statue of two combatants mid-fight on a themed battleground. Pixar-style stylized realism with dynamic poses. Soft shadows, clean white background. Series: SHIKAI ARENA RELICS."
+                },
+                {
+                    "file": "4E1C21D1-E380-4C5B-89FF-3027AACB0BCF.PNG",
+                    "prompt": "A collectible 3D-rendered duel statue featuring two fighters in combat. Sculpted in Pixar-style with dynamic energy. Engraved base with names. Series: SHIKAI ARENA RELICS."
+                },
+                {
+                    "file": "E8D7E374-44CE-43E3-8A01-DFCF61325A7A.PNG",
+                    "prompt": "A collectible 3D-rendered statue of two combatants mid-fight. Pixar-style stylized realism, dynamic poses, clean white background. Series: SHIKAI ARENA RELICS."
+                }
+            ]
+        },
+        {
+            "id": "22",
+            "title": "Shikai Beers",
+            "series": "BREW-BRAND",
+            "freq": "21.0Hz",
+            "lore": "Fictional brews from parallel dimensions. Each bottle tells a story of brands reimagined through the lens of liquid art.",
+            "folder": "Shikai Beers",
+            "images": [
+                {
+                    "file": "2E0B2076-7D00-4CD7-BEB0-8D4D20E975F6.PNG",
+                    "prompt": "A fictional brand-themed beer bottle or can. The design reflects the brand's visual identity and culture: colors, typography, logo integration, and packaging style. Add brand-specific humor or storytelling. Studio background, soft shadows, cinematic lighting. Hyper-realistic. Series: Shikai Beers."
+                },
+                {
+                    "file": "35B41178-9A7D-4D56-811A-405A44EFAB23.PNG",
+                    "prompt": "A fictional brand-themed beer bottle with unique packaging design reflecting the brand's visual identity. Studio background, soft shadows, cinematic lighting. Hyper-realistic. Series: Shikai Beers."
+                },
+                {
+                    "file": "A3746A21-F51B-4461-82C7-6B87BE7E72E2.PNG",
+                    "prompt": "A fictional brand-themed beer can with creative packaging design. Studio background, cinematic lighting. Hyper-realistic. Series: Shikai Beers."
+                },
+                {
+                    "file": "C7A1CF68-BEDE-4CA7-83E5-A3FF123B2B19.PNG",
+                    "prompt": "A fictional brand-themed beer bottle with brand-specific humor and storytelling. Studio background, soft shadows. Hyper-realistic. Series: Shikai Beers."
+                }
+            ]
+        },
+        {
+            "id": "23",
+            "title": "Shikai Chess Relics",
+            "series": "CHESS-MARBLE",
+            "freq": "64.0Hz",
+            "lore": "Chess pieces carved from the fabric of reality. Each piece represents a warrior frozen in eternal strategy.",
+            "folder": "Shikai Chess Relics",
+            "images": [
+                {
+                    "file": "1E6A4F7E-315E-490B-AB64-DC295A78FAB0.PNG",
+                    "prompt": "A high-resolution 3D render of a marble chess statue, carved from white or black stone with natural veining. The figure is posed wearing unique armor, and holds a weapon. Base merges into a chess pedestal. Studio lighting with soft shadows on a clean white background. Series: SHIKAI CHESS RELICS."
+                },
+                {
+                    "file": "76577FD8-0093-4893-9029-AFD5D010C286.PNG",
+                    "prompt": "A 3D render of a marble chess statue carved from stone with natural veining. The figure is in a dynamic pose on a chess pedestal. Studio lighting, clean white background. Series: SHIKAI CHESS RELICS."
+                },
+                {
+                    "file": "B753218D-C7CB-43C0-8FFB-39E87ECF3357.PNG",
+                    "prompt": "A marble chess statue 3D render. The figure is carved from black stone, posed with unique armor and weapon. Chess pedestal base. Clean white background. Series: SHIKAI CHESS RELICS."
+                },
+                {
+                    "file": "DD4E8B36-3EC8-43FB-A044-B0320568790A.PNG",
+                    "prompt": "A 3D render of a marble chess statue carved from stone. The figure holds a weapon on a chess piece pedestal. Studio lighting. Series: SHIKAI CHESS RELICS."
+                }
+            ]
+        },
+        {
+            "id": "24",
+            "title": "Shikai Chocolate Factory",
+            "series": "CHOCO-MECH",
+            "freq": "28.0Hz",
+            "lore": "Machines from a fantastical chocolate factory where confectionery meets engineering. Each device is a sweet marvel.",
+            "folder": "Shikai Chocolate Factory",
+            "images": [
+                {
+                    "file": "154F16FF-22AE-465F-AB6D-5DCA57210A9A.PNG",
+                    "prompt": "A fictional chocolate factory machine as a collectible 3D render. The machine has a unique function (melting, filling, decorating, shaping) and a distinct theme. White background, Pixar-style aesthetic, 9:16 vertical format, collectible product layout. Series: Shikai Chocolate Factory."
+                },
+                {
+                    "file": "1807D471-E3CB-49A7-A039-DB6952670489.PNG",
+                    "prompt": "A fictional chocolate factory machine as a collectible 3D render with steampunk theme. White background, Pixar-style aesthetic, 9:16 vertical format. Series: Shikai Chocolate Factory."
+                },
+                {
+                    "file": "8F366949-066A-469D-A0F8-155446CE3D92.PNG",
+                    "prompt": "A fictional chocolate factory machine as a collectible 3D render with retro-futuristic theme. White background, Pixar-style aesthetic. Series: Shikai Chocolate Factory."
+                },
+                {
+                    "file": "D620FF2C-CB8C-4855-9844-5D003611E398.PNG",
+                    "prompt": "A fictional chocolate factory machine as a collectible 3D render with magical theme. White background, Pixar-style aesthetic. Series: Shikai Chocolate Factory."
+                }
+            ]
+        },
+        {
+            "id": "25",
+            "title": "Shikai Garden Relics",
+            "series": "GNOME-STONE",
+            "freq": "18.0Hz",
+            "lore": "Garden gnomes from dimensions where lawn ornaments achieved sentience. Each statue guards secrets of the soil.",
+            "folder": "Shikai Garden Relics",
+            "images": [
+                {
+                    "file": "0FECA679-14B0-4ABC-82A3-19A4FE308FF7.PNG",
+                    "prompt": "A collectible 3D-rendered statue of a garden gnome, sculpted from stone or metal, styled in a unique aesthetic (ghostly, digital, fungal, mechanical). The gnome stands on a themed pedestal with its name engraved. Soft shadows on a clean white background, Pixar-quality stylized realism. Series: SHIKAI GARDEN RELICS."
+                },
+                {
+                    "file": "1BBDACE6-3BE6-4E4B-9381-BE1109BC4DF0.PNG",
+                    "prompt": "A collectible 3D-rendered garden gnome statue with digital aesthetic. Sculpted on a themed pedestal. Soft shadows, clean white background, Pixar-quality. Series: SHIKAI GARDEN RELICS."
+                },
+                {
+                    "file": "7E93DB1E-002A-454A-A72E-1624411B997B.PNG",
+                    "prompt": "A collectible 3D-rendered garden gnome statue with mechanical aesthetic. Themed pedestal with engraved name. Clean white background. Series: SHIKAI GARDEN RELICS."
+                },
+                {
+                    "file": "90A022CD-B42E-47A0-BD58-D3A6B15DED2B.PNG",
+                    "prompt": "A collectible 3D-rendered garden gnome statue with fungal aesthetic. Pixar-quality stylized realism, clean white background. Series: SHIKAI GARDEN RELICS."
+                }
+            ]
+        },
+        {
+            "id": "26",
+            "title": "The Eggserve Archive",
+            "series": "EGG-HATCH",
+            "freq": "11.1Hz",
+            "lore": "Creatures emerging from cosmic eggs. Each hatchling carries the potential of entire universes within its shell.",
+            "folder": "The Eggserve Archive",
+            "images": [
+                {
+                    "file": "057BBC19-90B1-482D-9267-751C848FBA18.PNG",
+                    "prompt": "A collectible 3D render of a baby creature hatching from a unique egg, in Pixar-style and 9:16 vertical format. Each egg and creature reflects a different world, realm, or idea — sci-fi, fantasy, elemental. Cracked egg design matching the theme. White background, clean collectible layout. Collection: THE EGGVERSE ARCHIVE."
+                },
+                {
+                    "file": "1F1691FD-642E-4EE2-A9D7-3AAF3249D0DB.PNG",
+                    "prompt": "A collectible 3D render of a baby creature hatching from a fantasy-themed egg. Pixar-style, 9:16 vertical format. White background. Collection: THE EGGVERSE ARCHIVE."
+                },
+                {
+                    "file": "64651754-450C-47AC-BF3C-8CF992B38CF0.PNG",
+                    "prompt": "A collectible 3D render of a baby creature hatching from a sci-fi themed egg. Pixar-style, 9:16 vertical format. White background. Collection: THE EGGVERSE ARCHIVE."
+                },
+                {
+                    "file": "C7F97ECA-D1E7-4EA1-9204-25A13E4DA1CB.PNG",
+                    "prompt": "A collectible 3D render of a baby creature hatching from an elemental-themed egg. Pixar-style, 9:16 vertical format. White background. Collection: THE EGGVERSE ARCHIVE."
+                }
+            ]
         }
     ]
 }

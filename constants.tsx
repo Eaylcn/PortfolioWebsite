@@ -135,7 +135,7 @@ export const REFERENCES = [
   {
     name: "Jordi Ruijs",
     role: "Lead QA Engineer at FeedbackFruits",
-    text: "Emir's systematic approach to quality and his ability to think like both a developer and a tester is rare.",
+    text: "Emir’s systematic approach to quality and his ability to think like both a developer and a tester are rare. He spots issues early and drives higher quality across the product.",
     avatar: "https://media.licdn.com/dms/image/v2/D4E03AQGZDvbbx9fW3Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718268496655?e=1767830400&v=beta&t=ekT6x75i3cjwZE58SF4Khuc8WoFvZjh3o4Lr15j4Kco",
     linkedin: "https://www.linkedin.com/in/jordiruijs/"
   },
