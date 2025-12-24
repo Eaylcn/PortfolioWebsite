@@ -1,7 +1,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { SHIKAI_LORE } from '../constants';
-import shikaiData from '../shikai.json';
 
 interface ArtifactImage {
   file: string;
@@ -15,6 +14,7 @@ interface ArtifactSet {
   freq: string;
   lore: string;
   folder: string;
+  isNew?: boolean;
   images: ArtifactImage[];
 }
 
@@ -32,30 +32,45 @@ const DroidShikai: React.FC = () => {
   const [isGlitching, setIsGlitching] = useState(false);
   const [viewMode, setViewMode] = useState<'carousel' | 'grid'>('carousel');
   const [showPrompts, setShowPrompts] = useState(false);
+  const [artifactSets, setArtifactSets] = useState<ArtifactSet[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const basePath = '/projects/shikai/Shikai Collection';
 
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
+  // Fetch shikai.json data
+  useEffect(() => {
+    fetch('/shikai.json')
+      .then(res => res.json())
+      .then(data => {
+        const sets: ArtifactSet[] = data.artifacts.map((collection: any) => ({
+          id: collection.id,
+          title: collection.title,
+          series: collection.series,
+          freq: collection.freq,
+          lore: collection.lore,
+          folder: collection.folder,
+          isNew: collection.isNew || false,
+          images: collection.images.map((img: { file: string; prompt: string }) => ({
+            file: `${basePath}/${collection.folder}/${img.file}`,
+            prompt: img.prompt
+          }))
+        })).reverse();
+        setArtifactSets(sets);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load shikai.json:', err);
+        setIsLoading(false);
+      });
+  }, []);
+
   const originalQuote = "How worlds can be built from interpretation rather than facts. Shikai exists to explore the boundary between art and artificial intelligence.";
   const secretQuote = "Reality is just a canvas for those who dare to observe differently. The machine dreams, and the dream becomes art.";
-
-  const basePath = '/projects/shikai/Shikai Collection';
-
-  // Load artifact sets from shikai.json (reversed so newest appear first)
-  const artifactSets: ArtifactSet[] = shikaiData.artifacts.map((collection: { id: string; title: string; series: string; freq: string; lore: string; folder: string; images: { file: string; prompt: string }[] }) => ({
-    id: collection.id,
-    title: collection.title,
-    series: collection.series,
-    freq: collection.freq,
-    lore: collection.lore,
-    folder: collection.folder,
-    images: collection.images.map((img: { file: string; prompt: string }) => ({
-      file: `${basePath}/${collection.folder}/${img.file}`,
-      prompt: img.prompt
-    }))
-  })).reverse();
 
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
@@ -339,8 +354,18 @@ const DroidShikai: React.FC = () => {
           {/* Content Container - Fixed height to prevent layout shift */}
           <div className="min-h-[500px] sm:min-h-[600px]">
 
+            {/* Loading State */}
+            {isLoading && (
+              <div className="flex items-center justify-center h-[400px]">
+                <div className="text-center space-y-4">
+                  <span className="material-symbols-outlined text-6xl text-primary animate-spin">cached</span>
+                  <p className="text-slate-400 text-sm uppercase tracking-widest">Loading artifacts...</p>
+                </div>
+              </div>
+            )}
+
             {/* Carousel View */}
-            {viewMode === 'carousel' && (
+            {!isLoading && viewMode === 'carousel' && (
               <div className="relative px-4 sm:px-20">
                 <button
                   onClick={() => scrollCarousel('left')}
@@ -374,7 +399,12 @@ const DroidShikai: React.FC = () => {
                         </div>
                       </div>
                       <div className="p-8 space-y-2">
-                        <h3 className="text-2xl font-black text-white font-display group-hover:text-primary transition-colors uppercase leading-none">{set.title}</h3>
+                        <div className="flex items-center gap-2">
+                          <h3 className="text-2xl font-black text-white font-display group-hover:text-primary transition-colors uppercase leading-none">{set.title}</h3>
+                          {set.isNew && (
+                            <span className="px-2 py-0.5 bg-green-500 text-white text-[8px] font-black uppercase tracking-widest rounded-full animate-pulse">NEW</span>
+                          )}
+                        </div>
                         <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500">
                           <span>{set.series}</span>
                           <span className="text-primary font-mono">{set.freq}</span>
@@ -394,7 +424,7 @@ const DroidShikai: React.FC = () => {
             )}
 
             {/* Grid View */}
-            {viewMode === 'grid' && (
+            {!isLoading && viewMode === 'grid' && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[80vh] overflow-y-auto hide-scrollbar pb-10 px-4">
                 {artifactSets.map((set, idx) => (
                   <div
@@ -421,6 +451,9 @@ const DroidShikai: React.FC = () => {
                         <span className="text-primary font-black">{set.series}</span>
                         <span className="text-slate-600">//</span>
                         <span className="text-slate-500 font-mono">{set.freq}</span>
+                        {set.isNew && (
+                          <span className="px-2 py-0.5 bg-green-500 text-white text-[8px] font-black uppercase tracking-widest rounded-full animate-pulse">NEW</span>
+                        )}
                       </div>
                       <h3 className="text-xl font-black text-white font-display uppercase tracking-tight">{set.title}</h3>
                     </div>

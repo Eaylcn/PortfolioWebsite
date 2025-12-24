@@ -675,6 +675,33 @@
                     "prompt": "A collectible 3D render of a baby creature hatching from an elemental-themed egg. Pixar-style, 9:16 vertical format. White background. Collection: THE EGGVERSE ARCHIVE."
                 }
             ]
+        },
+        {
+            "id": "27",
+            "title": "Shikai Timeless Relics",
+            "series": "TIME-RELIC",
+            "freq": "∞Hz",
+            "lore": "Statues that exist outside of time. Each figure represents a moment of philosophical stillness, captured in eternal observation. These are not characters — they are ideas, frozen in form.",
+            "folder": "Shikai Timeless Relics",
+            "isNew": true,
+            "images": [
+                {
+                    "file": "0E9F85A3-5510-4180-A3B5-CD7D30B3B7AC.PNG",
+                    "prompt": "A premium, high-end 3D-rendered collectible figurine from the SHIKAI TIME RELICS series. Museum-quality collectible statue with clean, minimal, philosophical tone. Photorealistic 3D render on pure white background with studio lighting and soft shadows. Single central human or humanoid form in calm, timeless posture. Matte stone/ceramic/porcelain finish with subtle surface imperfections. Vertical 9:16, centered framing, full figure visible. Timeless, quiet, philosophical mood."
+                },
+                {
+                    "file": "73F9E94E-C8B5-48E4-8CCC-289FEC70ED0E.PNG",
+                    "prompt": "A premium, high-end 3D-rendered collectible figurine from the SHIKAI TIME RELICS series. Museum-quality collectible statue with clean, minimal, philosophical tone. Photorealistic 3D render on pure white background with studio lighting. Single central humanoid form in calm posture. Matte stone/ceramic finish. Vertical 9:16, centered framing. Timeless, quiet mood."
+                },
+                {
+                    "file": "93ABA02A-63AD-4D9C-A2FF-98FDCD51E81E.PNG",
+                    "prompt": "A premium, high-end 3D-rendered collectible figurine from the SHIKAI TIME RELICS series. Museum-quality statue with philosophical tone. Photorealistic 3D render on white background with studio lighting. Human or humanoid form in timeless posture. Matte porcelain finish. Vertical 9:16, centered. Quiet, observational mood."
+                },
+                {
+                    "file": "C221579F-F087-410F-A217-81BEB2A1617A.PNG",
+                    "prompt": "A premium, high-end 3D-rendered collectible figurine from the SHIKAI TIME RELICS series. Museum-quality collectible statue. Photorealistic 3D render on pure white background. Single central figure in calm, timeless posture. Matte stone finish with subtle imperfections. Vertical 9:16. Philosophical, timeless mood."
+                }
+            ]
         }
     ]
 }
