@@ -702,6 +702,33 @@
                     "prompt": "A premium, high-end 3D-rendered collectible figurine from the SHIKAI TIME RELICS series. Museum-quality collectible statue. Photorealistic 3D render on pure white background. Single central figure in calm, timeless posture. Matte stone finish with subtle imperfections. Vertical 9:16. Philosophical, timeless mood."
                 }
             ]
+        },
+        {
+            "id": "28",
+            "title": "Shikai Cosmic Rides",
+            "series": "COSMIC-RIDE",
+            "freq": "88.8Hz",
+            "lore": "Vehicles from dimensions where machines dream of the stars. Each ride carries the soul of its pilot across infinite highways of light and shadow.",
+            "folder": "Shikai Cosmic Rides",
+            "isNew": true,
+            "images": [
+                {
+                    "file": "ChatGPT Image 24 Ara 2025 10_10_54.png",
+                    "prompt": "A premium 3D collectible vehicle designed for the Shikai Cosmic Rides series. Ultra-detailed 3D render on clean white studio background. Centered composition with soft realistic shadow. Museum-grade collectible product photography style. Hot Wheels-inspired proportions with slightly exaggerated toy-like forms. Mixed metals with scratches, dents, and wear. Visible bolts, plates, cables. Clear distinction between clean tech and junk tech. Vertical 9:16 aspect ratio. The vehicle is stationary, displayed as an artifact."
+                },
+                {
+                    "file": "ChatGPT Image 24 Ara 2025 10_18_45.png",
+                    "prompt": "A premium 3D collectible vehicle for the Shikai Cosmic Rides series. Ultra-detailed 3D render on white studio background. Centered, soft realistic shadow. Museum-grade collectible style. Hot Wheels-inspired proportions, exaggerated toy-like forms. Mixed metals with wear and improvised engineering. Visible mechanical parts. Vertical 9:16 aspect ratio."
+                },
+                {
+                    "file": "ChatGPT Image 24 Ara 2025 10_32_01.png",
+                    "prompt": "A premium 3D collectible vehicle for the Shikai Cosmic Rides series. Ultra-detailed 3D render on white background. Centered composition with soft shadow. Museum-grade collectible photography. Hot Wheels-inspired proportions with strong silhouette and personality. Mixed metals, scratches, visible bolts and cables. Vertical 9:16 aspect ratio."
+                },
+                {
+                    "file": "Gemini_Generated_Image_s2xvbks2xvbks2xv.png",
+                    "prompt": "A premium 3D collectible vehicle for the Shikai Cosmic Rides series. Ultra-detailed 3D render on clean white studio background. Centered composition with realistic shadow beneath. Museum-grade collectible product photography. Hot Wheels-inspired toy-like forms. Each vehicle feels hand-built, unique, and story-driven. Mixed metals with wear. Vertical 9:16 aspect ratio."
+                }
+            ]
         }
     ]
 }
