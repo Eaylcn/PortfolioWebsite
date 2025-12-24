@@ -43,7 +43,7 @@ const DroidShikai: React.FC = () => {
 
   const basePath = '/projects/shikai/Shikai Collection';
 
-  // Load artifact sets from shikai.json
+  // Load artifact sets from shikai.json (reversed so newest appear first)
   const artifactSets: ArtifactSet[] = shikaiData.artifacts.map((collection: { id: string; title: string; series: string; freq: string; lore: string; folder: string; images: { file: string; prompt: string }[] }) => ({
     id: collection.id,
     title: collection.title,
@@ -55,7 +55,7 @@ const DroidShikai: React.FC = () => {
       file: `${basePath}/${collection.folder}/${img.file}`,
       prompt: img.prompt
     }))
-  }));
+  })).reverse();
 
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
