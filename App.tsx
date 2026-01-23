@@ -7,6 +7,7 @@ import Skills from './pages/Skills';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
 import DroidShikai from './pages/DroidShikai';
+import Story from './pages/Story';
 import BugOracle from './components/BugOracle';
 import GameDetailPage from './pages/GameDetailPage';
 import MobileDetailPage from './pages/MobileDetailPage';
@@ -53,6 +54,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/story" element={<Story />} />
             <Route path="/games/:slug" element={<GameDetailPage />} />
             <Route path="/mobile/:slug" element={<MobileDetailPage />} />
             <Route path="/web/:slug" element={<WebDetailPage />} />

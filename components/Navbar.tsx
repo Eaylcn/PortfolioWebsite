@@ -9,6 +9,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'About', path: '/', icon: 'home' },
     { name: 'Character Sheet', path: '/skills', icon: 'person' },
+    { name: 'Story', path: '/story', icon: 'auto_stories' },
     { name: 'Quest Log', path: '/portfolio', icon: 'map' },
     { name: 'Droid Shikai', path: '/droid-shikai', icon: 'cognition' },
     { name: 'Contact', path: '/contact', icon: 'mail' }
@@ -45,16 +46,15 @@ const Navbar: React.FC = () => {
                 <span className="text-[10px] text-primary uppercase font-bold tracking-[0.2em] -mt-1">QA Engineer & Game Architect</span>
               </div>
             </Link>
-            
+
             <nav className="hidden xl:flex flex-1 justify-end items-center gap-8">
               <div className="flex items-center gap-6">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`text-sm font-medium transition-colors ${
-                      location.pathname === link.path ? 'text-primary' : 'text-slate-300 hover:text-primary'
-                    }`}
+                    className={`text-sm font-medium transition-colors ${location.pathname === link.path ? 'text-primary' : 'text-slate-300 hover:text-primary'
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -65,9 +65,9 @@ const Navbar: React.FC = () => {
                 <span>Hire Me</span>
               </Link>
             </nav>
-            
+
             {/* Hamburger Menu Button */}
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="xl:hidden text-slate-300 hover:text-primary transition-colors p-2"
               aria-label="Toggle mobile menu"
@@ -81,24 +81,22 @@ const Navbar: React.FC = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 xl:hidden transition-opacity duration-300 ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+      <div
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 xl:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
         onClick={() => setIsMobileMenuOpen(false)}
       />
 
       {/* Mobile Menu Panel */}
-      <div 
-        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-card-dark border-l border-border-dark z-50 xl:hidden transform transition-transform duration-300 ease-out ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-card-dark border-l border-border-dark z-50 xl:hidden transform transition-transform duration-300 ease-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="p-6 border-b border-border-dark flex items-center justify-between">
             <span className="text-white font-display font-bold uppercase tracking-widest text-xs">Navigation</span>
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-slate-400 hover:text-white transition-colors"
             >
@@ -112,11 +110,10 @@ const Navbar: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 ${
-                  location.pathname === link.path 
-                    ? 'bg-primary text-white shadow-glow' 
+                className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 ${location.pathname === link.path
+                    ? 'bg-primary text-white shadow-glow'
                     : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                }`}
+                  }`}
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <span className="material-symbols-outlined">{link.icon}</span>
@@ -127,8 +124,8 @@ const Navbar: React.FC = () => {
 
           {/* Footer CTA */}
           <div className="p-6 border-t border-border-dark">
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               className="flex items-center justify-center gap-3 w-full bg-primary hover:bg-blue-600 text-white py-4 rounded-2xl font-bold text-sm transition-all shadow-glow hover:shadow-glow-hover uppercase tracking-widest"
             >
               <span className="material-symbols-outlined">bolt</span>
