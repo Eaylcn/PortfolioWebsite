@@ -112,5 +112,63 @@
       "/projects/mobile/QuantumAgent-2.PNG"
     ],
     "links": {}
+  },
+  {
+    "id": "m-zoomerge",
+    "slug": "zoo-merge",
+    "title": "Zoo Merge (Temp Name)",
+    "category": "Mobile",
+    "status": "MVP Development",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "role": "Game Developer & Systems Architect",
+    "description": "A zoo-themed Merge-2 mobile game developed entirely through Generative AI-assisted pair programming.",
+    "longDescription": "Zoo Merge challenges players to merge resources, manage grid space, and fulfill specific animal orders to build and expand their habitats. Designed with a rapid-prototyping mindset, the primary mission of this MVP is to deliver a fully playable, polished experience to gather real-world user feedback, demonstrating the power of LLM-driven game development in creating robust game economies and addictive core loops. \n\n**Performance Note:** This project serves as a case study in Advanced Agentic Coding. By collaborating with a customized Generative AI agent, I accelerated the development lifecycle from system architecture to UI implementation. Complex systems like contextual UI rendering, nested layout groups, and scalable ScriptableObject databases were iterated upon in real-time, proving that AI pair-programming is not just for boilerplate code, but for architecting fully-fledged, production-ready game systems.",
+    "tags": [
+      "Unity",
+      "C#",
+      "Generative AI",
+      "Merge-2"
+    ],
+    "imageUrl": "/projects/mobile/merge2Game-1.PNG",
+    "techStack": [
+      "Unity",
+      "C#",
+      "Generative AI",
+      "Mobile UI/UX",
+      "ScriptableObjects"
+    ],
+    "features": [
+      "Drag & Drop Merge Mechanics",
+      "Order System for player progression",
+      "Stash Management",
+      "Dynamic Shop (In-Game and IAPs)",
+      "Environmental Obstacles (Locked grids)",
+      "Micro-interactions & UX feedback"
+    ],
+    "systems": [
+      "Modular codebase with C# partial classes",
+      "Centralized BoardManager for grid state",
+      "Event-driven, contextual UI architecture",
+      "Dynamic economy & real-time Shop System",
+      "Custom ScriptableObject framework"
+    ],
+    "roadmap": [
+      "Phase 1: Foundation & Economy (Shop System)",
+      "Phase 2: Core Gameplay (Stash & Order Systems)",
+      "Phase 3: Depth & Polishing (Locked Grid, QoL)",
+      "Phase 4: Meta-Game & Monetization (Profile, Rewards)",
+      "Phase 5: MVP Release & Beyond"
+    ],
+    "screenshots": [
+      "/projects/mobile/merge2Game-1.PNG",
+      "/projects/mobile/merge2Game-2.PNG",
+      "/projects/mobile/merge2Game-3.PNG",
+      "/projects/mobile/merge2Game-4.PNG",
+      "/projects/mobile/merge2Game-5.PNG"
+    ],
+    "links": {}
   }
 ]
