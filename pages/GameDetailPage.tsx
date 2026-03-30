@@ -2,6 +2,10 @@
 import { useParams, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useProject } from '../hooks/useProjects';
+import BackButton from '../components/shared/BackButton';
+import StatusBadge from '../components/shared/StatusBadge';
+import LightboxModal from '../components/shared/LightboxModal';
+import GalleryGrid from '../components/shared/GalleryGrid';
 
 const GameDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -35,10 +39,7 @@ const GameDetailPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Back Button */}
-        <Link to="/portfolio" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-bold uppercase tracking-widest text-xs mb-8 group">
-          <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">chevron_left</span>
-          Back to Archive
-        </Link>
+        <BackButton />
 
         {/* Hero Section */}
         <div className="relative rounded-[3rem] overflow-hidden border border-border-dark mb-12 shadow-2xl aspect-[21/9]">
@@ -46,12 +47,7 @@ const GameDetailPage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
           <div className="absolute bottom-10 left-10 right-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
-              <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20 backdrop-blur-md ${project.status === 'Released' ? 'bg-green-500/20 text-green-400' :
-                project.status === 'In Development' ? 'bg-yellow-500/20 text-yellow-400' :
-                  'bg-primary/20 text-primary-glow'
-                }`}>
-                {project.status}
-              </span>
+              <StatusBadge status={project.status} />
               <h1 className="text-4xl md:text-7xl font-black text-white font-display uppercase tracking-tight">{project.title}</h1>
             </div>
             <div className="flex gap-4">
@@ -228,25 +224,7 @@ const GameDetailPage: React.FC = () => {
       </div>
 
       {/* Lightbox Modal */}
-      {lightboxImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setLightboxImage(null)}
-        >
-          <button
-            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-10"
-            onClick={() => setLightboxImage(null)}
-          >
-            <span className="material-symbols-outlined text-4xl">close</span>
-          </button>
-          <img
-            src={lightboxImage}
-            className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl animate-fade-in-up"
-            alt="Fullscreen view"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+      <LightboxModal image={lightboxImage} onClose={() => setLightboxImage(null)} />
     </div>
   );
 };

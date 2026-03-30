@@ -2,6 +2,8 @@
 import { useParams, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useProject } from '../hooks/useProjects';
+import BackButton from '../components/shared/BackButton';
+import LightboxModal from '../components/shared/LightboxModal';
 
 const WebDetailPage: React.FC = () => {
    const { slug } = useParams<{ slug: string }>();
@@ -36,10 +38,7 @@ const WebDetailPage: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
                {/* Back Button */}
-               <Link to="/portfolio" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-bold uppercase tracking-widest text-xs mb-8 group">
-                  <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">chevron_left</span>
-                  Back to Archive
-               </Link>
+               <BackButton />
 
                <div className="space-y-12">
                   {/* Web Header/Preview */}
@@ -170,25 +169,7 @@ const WebDetailPage: React.FC = () => {
          </div>
 
          {/* Lightbox Modal */}
-         {lightboxImage && (
-            <div
-               className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
-               onClick={() => setLightboxImage(null)}
-            >
-               <button
-                  className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-10"
-                  onClick={() => setLightboxImage(null)}
-               >
-                  <span className="material-symbols-outlined text-4xl">close</span>
-               </button>
-               <img
-                  src={lightboxImage}
-                  className="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl animate-fade-in-up"
-                  alt="Fullscreen view"
-                  onClick={(e) => e.stopPropagation()}
-               />
-            </div>
-         )}
+         <LightboxModal image={lightboxImage} onClose={() => setLightboxImage(null)} />
       </>
    );
 };
