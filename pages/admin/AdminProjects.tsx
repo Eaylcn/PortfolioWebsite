@@ -18,7 +18,11 @@ const AdminProjects: React.FC = () => {
   useEffect(() => { fetchProjects(); }, []);
 
   const toggleField = async (id: string, field: 'is_visible' | 'is_featured', currentValue: boolean) => {
-    await (supabase.from('projects') as any).update({ [field]: !currentValue }).eq('id', id);
+    const { error } = await (supabase.from('projects') as any).update({ [field]: !currentValue }).eq('id', id);
+    if (error) {
+      alert(`Toggle failed: ${error.message}\n\nYou need to run the RLS fix SQL in Supabase.`);
+      return;
+    }
     // Optimistic update
     setProjects(prev => prev.map(p => p.id === id ? { ...p, [field]: !currentValue } : p));
   };

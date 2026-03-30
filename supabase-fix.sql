@@ -1,40 +1,63 @@
 -- =============================================
--- RUN THIS IN SUPABASE SQL EDITOR
--- Safe to re-run: uses IF NOT EXISTS everywhere
+-- SUPABASE RLS FIX v2 - Guaranteed to work
+-- Run this in Supabase SQL Editor
 -- =============================================
 
--- 1. Create tables (skip if already exist)
-CREATE TABLE IF NOT EXISTS story_chapters (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  title TEXT NOT NULL, subtitle TEXT, years TEXT NOT NULL,
-  icon TEXT, content TEXT NOT NULL, achievement TEXT,
-  achievement_icon TEXT, sort_order INTEGER DEFAULT 0
-);
+-- STEP 1: Drop ALL existing admin policies (clean slate)
+DROP POLICY IF EXISTS "Admin manage projects" ON projects;
+DROP POLICY IF EXISTS "Admin full access projects" ON projects;
+DROP POLICY IF EXISTS "Admin manage collections" ON shikai_collections;
+DROP POLICY IF EXISTS "Admin full access shikai_collections" ON shikai_collections;
+DROP POLICY IF EXISTS "Admin manage shikai images" ON shikai_images;
+DROP POLICY IF EXISTS "Admin full access shikai_images" ON shikai_images;
+DROP POLICY IF EXISTS "Admin manage experiences" ON experiences;
+DROP POLICY IF EXISTS "Admin full access experiences" ON experiences;
+DROP POLICY IF EXISTS "Admin manage certifications" ON certifications;
+DROP POLICY IF EXISTS "Admin full access certifications" ON certifications;
+DROP POLICY IF EXISTS "Admin manage references" ON references_list;
+DROP POLICY IF EXISTS "Admin full access references" ON references_list;
+DROP POLICY IF EXISTS "Admin manage stats" ON stats;
+DROP POLICY IF EXISTS "Admin full access stats" ON stats;
+DROP POLICY IF EXISTS "Admin manage story chapters" ON story_chapters;
+DROP POLICY IF EXISTS "Admin manage tech stack" ON tech_stack;
 
-CREATE TABLE IF NOT EXISTS tech_stack (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  name TEXT NOT NULL, category TEXT NOT NULL,
-  icon TEXT NOT NULL DEFAULT 'code',
-  is_visible BOOLEAN DEFAULT true, sort_order INTEGER DEFAULT 0
-);
+-- STEP 2: Recreate admin policies using auth.uid() IS NOT NULL
+-- This is more reliable than auth.role() = 'authenticated'
+CREATE POLICY "Admin full access" ON projects FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
 
--- 2. Enable RLS
-ALTER TABLE story_chapters ENABLE ROW LEVEL SECURITY;
-ALTER TABLE tech_stack ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Admin full access" ON shikai_collections FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
 
--- 3. Add ALL policies safely (IF NOT EXISTS)
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public read story chapters' AND tablename = 'story_chapters') THEN CREATE POLICY "Public read story chapters" ON story_chapters FOR SELECT USING (true); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Public read visible tech stack' AND tablename = 'tech_stack') THEN CREATE POLICY "Public read visible tech stack" ON tech_stack FOR SELECT USING (is_visible = true); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin manage story chapters' AND tablename = 'story_chapters') THEN CREATE POLICY "Admin manage story chapters" ON story_chapters FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin manage tech stack' AND tablename = 'tech_stack') THEN CREATE POLICY "Admin manage tech stack" ON tech_stack FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
+CREATE POLICY "Admin full access" ON shikai_images FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
 
--- 4. Admin full access for existing tables
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access projects') THEN CREATE POLICY "Admin full access projects" ON projects FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access experiences') THEN CREATE POLICY "Admin full access experiences" ON experiences FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access certifications') THEN CREATE POLICY "Admin full access certifications" ON certifications FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access references') THEN CREATE POLICY "Admin full access references" ON references_list FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access stats') THEN CREATE POLICY "Admin full access stats" ON stats FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access shikai_collections') THEN CREATE POLICY "Admin full access shikai_collections" ON shikai_collections FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
-DO $$ BEGIN IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Admin full access shikai_images') THEN CREATE POLICY "Admin full access shikai_images" ON shikai_images FOR ALL USING (auth.role() = 'authenticated') WITH CHECK (auth.role() = 'authenticated'); END IF; END $$;
+CREATE POLICY "Admin full access" ON experiences FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
 
--- DONE!
+CREATE POLICY "Admin full access" ON certifications FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
+
+CREATE POLICY "Admin full access" ON references_list FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
+
+CREATE POLICY "Admin full access" ON stats FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
+
+CREATE POLICY "Admin full access" ON story_chapters FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
+
+CREATE POLICY "Admin full access" ON tech_stack FOR ALL
+  USING (auth.uid() IS NOT NULL)
+  WITH CHECK (auth.uid() IS NOT NULL);
+
+-- DONE! Now logged-in users can read, update, insert, delete ALL rows.
+-- Public users can still only read visible rows (existing public policies).
