@@ -1,20 +1,32 @@
-import React from 'react';
-import { useProjects } from '../../hooks/useProjects';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
+import type { Project } from '../../types/database';
 
 const AdminProjects: React.FC = () => {
-  const { projects, loading } = useProjects();
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const toggleVisibility = async (id: string, currentVisibility: boolean) => {
-    // Optimistic UI could be added here, but for now we just do DB call and let a reload happen or mutate
-    await (supabase.from('projects') as any).update({ is_visible: !currentVisibility }).eq('id', id);
-    window.location.reload(); // Simple refresh for now
+  const fetchProjects = async () => {
+    setLoading(true);
+    // Admin fetch: no RLS filter — authenticated users see all rows
+    const { data } = await supabase.from('projects').select('*').order('sort_order', { ascending: true });
+    setProjects((data as unknown as Project[]) || []);
+    setLoading(false);
+  };
+
+  useEffect(() => { fetchProjects(); }, []);
+
+  const toggleField = async (id: string, field: 'is_visible' | 'is_featured', currentValue: boolean) => {
+    await (supabase.from('projects') as any).update({ [field]: !currentValue }).eq('id', id);
+    // Optimistic update
+    setProjects(prev => prev.map(p => p.id === id ? { ...p, [field]: !currentValue } : p));
   };
 
   const deleteProject = async (id: string, title: string) => {
     if (window.confirm(`Are you sure you want to delete "${title}"? This cannot be undone.`)) {
       await (supabase.from('projects') as any).delete().eq('id', id);
-      window.location.reload();
+      setProjects(prev => prev.filter(p => p.id !== id));
     }
   };
 
@@ -30,13 +42,16 @@ const AdminProjects: React.FC = () => {
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-black font-display uppercase tracking-tight">Projects Database</h1>
-          <p className="text-slate-400 mt-1">Manage public visibility, attributes, and content.</p>
+          <h1 className="text-3xl font-black font-display uppercase tracking-tight">Projects</h1>
+          <p className="text-slate-400 mt-1">{projects.length} projects in database.</p>
         </div>
-        <button className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-2">
+        <Link
+          to="/admin/projects/new"
+          className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-2"
+        >
           <span className="material-symbols-outlined">add</span>
           New Project
-        </button>
+        </Link>
       </div>
 
       <div className="bg-card-dark border border-border-dark rounded-2xl overflow-hidden">
@@ -47,7 +62,8 @@ const AdminProjects: React.FC = () => {
                 <th className="p-4">Project</th>
                 <th className="p-4">Category</th>
                 <th className="p-4">Status</th>
-                <th className="p-4">Visibility</th>
+                <th className="p-4">Visible</th>
+                <th className="p-4">Featured</th>
                 <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
@@ -81,10 +97,11 @@ const AdminProjects: React.FC = () => {
                   </td>
                   <td className="p-4">
                     <button
-                      onClick={() => toggleVisibility(project.id, project.is_visible)}
+                      onClick={() => toggleField(project.id, 'is_visible', project.is_visible)}
                       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                         project.is_visible ? 'bg-green-500' : 'bg-slate-700'
                       }`}
+                      title={project.is_visible ? 'Click to hide from public' : 'Click to show publicly'}
                     >
                       <span
                         className={`inline-block size-4 transform rounded-full bg-white transition-transform ${
@@ -93,11 +110,30 @@ const AdminProjects: React.FC = () => {
                       />
                     </button>
                   </td>
+                  <td className="p-4">
+                    <button
+                      onClick={() => toggleField(project.id, 'is_featured', project.is_featured)}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                        project.is_featured ? 'bg-amber-500' : 'bg-slate-700'
+                      }`}
+                      title={project.is_featured ? 'Remove from homepage' : 'Show on homepage'}
+                    >
+                      <span
+                        className={`inline-block size-4 transform rounded-full bg-white transition-transform ${
+                          project.is_featured ? 'translate-x-6' : 'translate-x-1'
+                        }`}
+                      />
+                    </button>
+                  </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="size-8 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500 hover:text-white transition-colors flex items-center justify-center" title="Edit">
+                      <Link
+                        to={`/admin/projects/edit/${project.id}`}
+                        className="size-8 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500 hover:text-white transition-colors flex items-center justify-center"
+                        title="Edit"
+                      >
                         <span className="material-symbols-outlined text-[18px]">edit</span>
-                      </button>
+                      </Link>
                       <button 
                         onClick={() => deleteProject(project.id, project.title)}
                         className="size-8 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white transition-colors flex items-center justify-center" title="Delete">

@@ -45,9 +45,12 @@ const DroidShikai: React.FC = () => {
 
   const { collections, loading: shikaiLoading } = useShikaiCollections();
 
-  // Map to the format component expects
+  // Map DB data or fallback to local JSON
   useEffect(() => {
-    if (!shikaiLoading && collections) {
+    if (shikaiLoading) return;
+
+    // If DB has data, use it
+    if (collections && collections.length > 0) {
       const sets: ArtifactSet[] = collections.map(col => ({
         id: col.id,
         title: col.title,
@@ -63,7 +66,30 @@ const DroidShikai: React.FC = () => {
       }));
       setArtifactSets(sets);
       setIsLoading(false);
+      return;
     }
+
+    // Fallback: load from local JSON
+    fetch('/shikai.json')
+      .then(r => r.json())
+      .then(data => {
+        const sets: ArtifactSet[] = (data.artifacts || []).map((a: any) => ({
+          id: a.id,
+          title: a.title,
+          series: a.series,
+          freq: a.freq,
+          lore: a.lore,
+          folder: a.folder,
+          is_new: a.isNew || false,
+          images: (a.images || []).map((img: any) => ({
+            file_url: `${basePath}/${a.folder}/${img.file}`,
+            prompt: img.prompt || ''
+          }))
+        }));
+        setArtifactSets(sets);
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
   }, [collections, shikaiLoading]);
 
   const originalQuote = "How worlds can be built from interpretation rather than facts. Shikai exists to explore the boundary between art and artificial intelligence.";

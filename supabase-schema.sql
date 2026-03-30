@@ -102,6 +102,29 @@ CREATE TABLE stats (
   sort_order INTEGER DEFAULT 0
 );
 
+-- 8. STORY CHAPTERS
+CREATE TABLE story_chapters (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  subtitle TEXT,
+  years TEXT NOT NULL,
+  icon TEXT,
+  content TEXT NOT NULL,
+  achievement TEXT,
+  achievement_icon TEXT,
+  sort_order INTEGER DEFAULT 0
+);
+
+-- 9. TECH STACK
+CREATE TABLE tech_stack (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  icon TEXT NOT NULL DEFAULT 'code',
+  is_visible BOOLEAN DEFAULT true,
+  sort_order INTEGER DEFAULT 0
+);
+
 -- ============================================
 -- ROW LEVEL SECURITY (RLS)
 -- Public: read visible rows
@@ -115,6 +138,8 @@ ALTER TABLE experiences ENABLE ROW LEVEL SECURITY;
 ALTER TABLE certifications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE references_list ENABLE ROW LEVEL SECURITY;
 ALTER TABLE stats ENABLE ROW LEVEL SECURITY;
+ALTER TABLE story_chapters ENABLE ROW LEVEL SECURITY;
+ALTER TABLE tech_stack ENABLE ROW LEVEL SECURITY;
 
 -- Public read policies (anon users can only see visible items)
 CREATE POLICY "Public read visible projects" ON projects FOR SELECT USING (is_visible = true);
@@ -124,6 +149,8 @@ CREATE POLICY "Public read visible experiences" ON experiences FOR SELECT USING 
 CREATE POLICY "Public read visible certifications" ON certifications FOR SELECT USING (is_visible = true);
 CREATE POLICY "Public read visible references" ON references_list FOR SELECT USING (is_visible = true);
 CREATE POLICY "Public read stats" ON stats FOR SELECT USING (true);
+CREATE POLICY "Public read story chapters" ON story_chapters FOR SELECT USING (true);
+CREATE POLICY "Public read visible tech stack" ON tech_stack FOR SELECT USING (is_visible = true);
 
 -- Admin full access policies (authenticated users)
 CREATE POLICY "Admin manage projects" ON projects FOR ALL USING (auth.role() = 'authenticated');
@@ -133,6 +160,8 @@ CREATE POLICY "Admin manage experiences" ON experiences FOR ALL USING (auth.role
 CREATE POLICY "Admin manage certifications" ON certifications FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Admin manage references" ON references_list FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Admin manage stats" ON stats FOR ALL USING (auth.role() = 'authenticated');
+CREATE POLICY "Admin manage story chapters" ON story_chapters FOR ALL USING (auth.role() = 'authenticated');
+CREATE POLICY "Admin manage tech stack" ON tech_stack FOR ALL USING (auth.role() = 'authenticated');
 
 -- ============================================
 -- AUTO-UPDATE updated_at
@@ -155,3 +184,4 @@ CREATE TRIGGER projects_updated_at
 -- 2. Create bucket: "shikai-images" (public)
 -- 3. Create bucket: "profile-assets" (public)
 -- ============================================
+

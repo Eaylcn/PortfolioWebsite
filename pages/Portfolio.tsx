@@ -40,7 +40,7 @@ const Portfolio: React.FC = () => {
           <div className="relative z-10 flex flex-col items-center gap-6 max-w-2xl animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-black uppercase tracking-[0.3em] mb-2 backdrop-blur-md">
               <span className="material-symbols-outlined text-sm animate-spin-slow">auto_fix_high</span>
-              The Grand Archive
+              Projects
             </div>
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white drop-shadow-2xl font-display uppercase leading-[0.85]">
               PROJECT <span className="text-primary">ARCHIVE</span>

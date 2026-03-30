@@ -13,8 +13,11 @@ export const AdminLayout: React.FC = () => {
   const menuItems = [
     { name: 'Dashboard', path: '/admin', icon: 'dashboard' },
     { name: 'Projects', path: '/admin/projects', icon: 'library_books' },
-    { name: 'Shikai Realms', path: '/admin/shikai', icon: 'image' },
+    { name: 'Shikai Collections', path: '/admin/shikai', icon: 'image' },
     { name: 'Experience & Certs', path: '/admin/experience', icon: 'work' },
+    { name: 'Skill Stats', path: '/admin/stats', icon: 'bar_chart' },
+    { name: 'Story', path: '/admin/story', icon: 'auto_stories' },
+    { name: 'Tech Stack', path: '/admin/tech-stack', icon: 'inventory_2' },
   ];
 
   return (
@@ -23,7 +26,7 @@ export const AdminLayout: React.FC = () => {
       <aside className="w-64 bg-card-dark border-r border-border-dark flex flex-col shrink-0">
         <div className="h-16 flex items-center px-6 border-b border-border-dark">
           <span className="font-display font-black text-xl tracking-widest uppercase text-primary">
-            Grand Archive
+            Admin Panel
           </span>
         </div>
         
@@ -53,7 +56,7 @@ export const AdminLayout: React.FC = () => {
             className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors font-medium border border-transparent hover:border-red-500/20"
           >
             <span className="material-symbols-outlined text-[20px]">logout</span>
-            Terminate Session
+            Logout
           </button>
         </div>
       </aside>
@@ -63,7 +66,7 @@ export const AdminLayout: React.FC = () => {
         <header className="h-16 flex items-center px-8 border-b border-border-dark bg-card-dark/50 shrink-0">
           <div className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-slate-500">
             <span className="material-symbols-outlined text-[16px] text-primary">admin_panel_settings</span>
-            System Override Active
+            Admin Panel
           </div>
           <div className="ml-auto text-xs text-slate-400 font-mono">
             {new Date().toISOString().split('T')[0]}

@@ -14,8 +14,6 @@ const Home: React.FC = () => {
   const { projects: featuredProjects, loading: projectsLoading } = useFeaturedProjects();
   const { data: references, loading: refsLoading } = useReferences();
 
-  const isLoading = statsLoading || projectsLoading || refsLoading;
-
   useEffect(() => {
     // Parallax Effect Logic
     const handleScroll = () => {
@@ -47,7 +45,7 @@ const Home: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, []);
+  }, [statsLoading, projectsLoading, refsLoading]);
 
   const setRef = (el: HTMLElement | null, index: number) => {
     scrollRefs.current[index] = el;
@@ -57,13 +55,7 @@ const Home: React.FC = () => {
     return `/${project.category === 'game' ? 'games' : project.category}/${project.slug}`;
   };
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center pt-20 bg-background-dark">
-        <span className="material-symbols-outlined text-primary text-6xl animate-spin-slow">progress_activity</span>
-      </div>
-    );
-  }
+
 
   return (
     <div className="flex flex-col overflow-hidden">
@@ -87,7 +79,7 @@ const Home: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              Game Developer | Product Manager
+              Product Manager | Game Developer
             </div>
             {/* Open to Work Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-black uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(34,197,94,0.2)] animate-pulse">
@@ -105,7 +97,7 @@ const Home: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-5 mt-6">
             <Link to="/portfolio" className="bg-primary hover:bg-blue-600 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-glow hover:shadow-glow-hover hover:-translate-y-2 flex items-center justify-center gap-2 min-w-[200px] active:scale-95">
-              <span>Explore Archive</span>
+              <span>View Projects</span>
               <span className="material-symbols-outlined">folder_open</span>
             </Link>
             <Link to="/skills" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all duration-300 hover:-translate-y-2 flex items-center justify-center gap-2 min-w-[200px] backdrop-blur-md active:scale-95">
@@ -177,7 +169,7 @@ const Home: React.FC = () => {
               </p>
             </div>
             <Link to="/portfolio" className="text-primary hover:text-white font-bold flex items-center gap-2 transition-all uppercase tracking-widest text-sm bg-primary/5 px-6 py-3 rounded-xl border border-primary/20 hover:bg-primary/10">
-              Full Archive
+              All Projects
               <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
           </div>
@@ -263,8 +255,7 @@ const Home: React.FC = () => {
             <div className="max-w-3xl space-y-8 relative z-10">
               <h2 className="text-4xl md:text-6xl font-black text-white font-display uppercase tracking-tighter">THE DATA DRAKE</h2>
               <p className="text-xl text-slate-300 leading-relaxed font-light italic">
-                A spectral dragon companion that guards Emir's Grand Archive. Curious about the Master's spells (skills), past campaigns (work experience), or his philosophy of quality?
-                Consult the Drake for an instant report from the Master's private scrolls.
+                An AI-powered assistant built into this portfolio. Ask about Emir's skills, work experience, technical expertise, or career journey — get instant, context-aware answers.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button
@@ -272,7 +263,7 @@ const Home: React.FC = () => {
                   className="bg-primary hover:bg-blue-600 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-3 active:scale-95"
                 >
                   <span className="material-symbols-outlined">psychology</span>
-                  Consult the Drake
+                  Ask Data Drake
                 </button>
               </div>
             </div>

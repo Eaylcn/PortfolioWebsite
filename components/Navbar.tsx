@@ -8,9 +8,9 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'About', path: '/', icon: 'home' },
-    { name: 'Character Sheet', path: '/skills', icon: 'person' },
+    { name: 'Skills', path: '/skills', icon: 'person' },
     { name: 'Story', path: '/story', icon: 'auto_stories' },
-    { name: 'Quest Log', path: '/portfolio', icon: 'map' },
+    { name: 'Projects', path: '/portfolio', icon: 'work' },
     { name: 'Droid Shikai', path: '/droid-shikai', icon: 'cognition' },
     { name: 'Contact', path: '/contact', icon: 'mail' }
   ];

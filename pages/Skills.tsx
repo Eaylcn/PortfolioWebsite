@@ -2,7 +2,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { USER_KNOWLEDGE } from '../constants';
-import { useStats, useExperiences, useCertifications } from '../hooks/useData';
+import { useStats, useExperiences, useCertifications, useTechStack } from '../hooks/useData';
+
+const FALLBACK_ARSENAL = [
+  { name: 'Selenium', category: 'Automation', icon: 'public' },
+  { name: 'Appium', category: 'Mobile', icon: 'smartphone' },
+  { name: 'Robot Framework', category: 'Automation', icon: 'precision_manufacturing' },
+  { name: 'Cucumber', category: 'BDD', icon: 'eco' },
+  { name: 'Gherkin', category: 'BDD', icon: 'description' },
+  { name: 'RestAssured', category: 'API', icon: 'api' },
+  { name: 'Karate', category: 'API', icon: 'shield' },
+  { name: 'Postman', category: 'API', icon: 'send' },
+  { name: 'Jenkins', category: 'CI/CD', icon: 'cyclone' },
+  { name: 'Docker', category: 'CI/CD', icon: 'box' },
+  { name: 'JIRA', category: 'Management', icon: 'assignment' },
+  { name: 'Java', category: 'Language', icon: 'coffee' },
+  { name: 'C#', category: 'Language', icon: 'terminal' },
+  { name: 'Ember.js', category: 'Frontend', icon: 'web' },
+  { name: 'Unity', category: 'Game Dev', icon: 'deployed_code' }
+];
 
 const Skills: React.FC = () => {
   const [showAllExperience, setShowAllExperience] = useState(false);
@@ -10,26 +28,13 @@ const Skills: React.FC = () => {
   const { data: stats, loading: statsLoading } = useStats();
   const { data: experiences, loading: expLoading } = useExperiences();
   const { data: certifications, loading: certLoading } = useCertifications();
+  const { data: dbTechStack } = useTechStack();
+
+  const arsenalItems = dbTechStack.length > 0
+    ? dbTechStack.map(t => ({ name: t.name, category: t.category, icon: t.icon }))
+    : FALLBACK_ARSENAL;
 
   const isLoading = statsLoading || expLoading || certLoading;
-
-  const arsenalItems = [
-    { name: 'Selenium', category: 'Automation', icon: 'public' },
-    { name: 'Appium', category: 'Mobile', icon: 'smartphone' },
-    { name: 'Robot Framework', category: 'Automation', icon: 'precision_manufacturing' },
-    { name: 'Cucumber', category: 'BDD', icon: 'eco' },
-    { name: 'Gherkin', category: 'BDD', icon: 'description' },
-    { name: 'RestAssured', category: 'API', icon: 'api' },
-    { name: 'Karate', category: 'API', icon: 'shield' },
-    { name: 'Postman', category: 'API', icon: 'send' },
-    { name: 'Jenkins', category: 'CI/CD', icon: 'cyclone' },
-    { name: 'Docker', category: 'CI/CD', icon: 'box' },
-    { name: 'JIRA', category: 'Management', icon: 'assignment' },
-    { name: 'Java', category: 'Language', icon: 'coffee' },
-    { name: 'C#', category: 'Language', icon: 'terminal' },
-    { name: 'Ember.js', category: 'Frontend', icon: 'web' },
-    { name: 'Unity', category: 'Game Dev', icon: 'deployed_code' }
-  ];
 
   const displayedExperience = showAllExperience ? experiences : experiences.slice(0, 2);
 
@@ -61,27 +66,27 @@ const Skills: React.FC = () => {
                 />
               </div>
               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white text-background-dark px-10 py-2.5 rounded-full font-black text-[10px] shadow-glow z-20 uppercase tracking-[0.3em] border-2 border-primary/20 whitespace-nowrap">
-                MASTER ARCHITECT
+                PORTFOLIO OWNER
               </div>
             </div>
 
             <div className="flex-1 text-center lg:text-left space-y-6">
               <div className="space-y-2">
-                <p className="text-primary font-bold text-xs tracking-[0.5em] uppercase opacity-80">Identification_Protocol</p>
+                <p className="text-primary font-bold text-xs tracking-[0.5em] uppercase opacity-80">Professional Profile</p>
                 <h1 className="text-6xl md:text-8xl font-black text-white font-display uppercase tracking-tighter leading-[0.85] transition-all group-hover:tracking-tight">
                   {USER_KNOWLEDGE.name}
                 </h1>
                 <div className="flex flex-col sm:flex-row items-center gap-5 justify-center lg:justify-start pt-2">
-                  <p className="text-white text-2xl font-black tracking-widest uppercase border-b-2 border-primary">GAME DEVELOPER</p>
+                  <p className="text-white text-2xl font-black tracking-widest uppercase border-b-2 border-primary">PRODUCT MANAGER</p>
                   <span className="hidden sm:inline size-2 rounded-full bg-primary/40"></span>
-                  <p className="text-slate-400 font-medium tracking-[0.4em] text-sm uppercase italic opacity-60">Product Manager</p>
+                  <p className="text-slate-400 font-medium tracking-[0.4em] text-sm uppercase italic opacity-60">Game Developer</p>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
                 <Link to="/contact" className="bg-primary hover:bg-blue-600 text-white px-12 py-5 rounded-[2rem] font-black text-xs transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-4 active:scale-95 uppercase tracking-widest">
                   <span className="material-symbols-outlined text-lg">terminal</span>
-                  Establish Connection
+                  Contact Me
                 </Link>
                 <a
                   href="/cv/emir-ata-yalcin-cv.pdf"
@@ -90,7 +95,7 @@ const Skills: React.FC = () => {
                   className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-12 py-5 rounded-[2rem] font-black text-xs transition-all flex items-center gap-4 active:scale-95 uppercase tracking-widest"
                 >
                   <span className="material-symbols-outlined text-lg">description</span>
-                  View Scroll (CV)
+                  Download CV
                 </a>
               </div>
             </div>
@@ -106,7 +111,7 @@ const Skills: React.FC = () => {
             <div className="absolute top-0 left-0 w-1 h-full bg-primary opacity-40"></div>
             <h2 className="text-2xl font-black text-white font-display flex items-center gap-3 border-b border-border-dark pb-4 uppercase tracking-tighter">
               <span className="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform">pentagon</span>
-              ATTRIBUTES
+              CORE SKILLS
             </h2>
             <div className="space-y-6">
               {stats.map(stat => (
@@ -131,7 +136,7 @@ const Skills: React.FC = () => {
             <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
             <h2 className="text-2xl font-black text-white font-display flex items-center gap-3 border-b border-border-dark pb-4 uppercase tracking-tighter">
               <span className="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">inventory_2</span>
-              THE ARSENAL <span className="text-slate-500 text-[10px] font-normal lowercase tracking-widest italic">(Tech Stack)</span>
+              TECH STACK
             </h2>
             <div className="grid grid-cols-4 gap-4">
               {arsenalItems.map((item, idx) => (
@@ -154,7 +159,7 @@ const Skills: React.FC = () => {
           <section className="bg-card-dark p-10 rounded-[3.5rem] border border-border-dark space-y-8 shadow-xl">
             <h2 className="text-2xl font-black text-white font-display flex items-center gap-3 border-b border-border-dark pb-4 uppercase tracking-tighter">
               <span className="material-symbols-outlined text-primary">military_tech</span>
-              ARTIFACTS <span className="text-slate-500 text-[10px] font-normal lowercase tracking-widest italic">(Certifications)</span>
+              CERTIFICATIONS
             </h2>
             <div className="space-y-4">
               {certifications.map(cert => (
@@ -231,7 +236,7 @@ const Skills: React.FC = () => {
             </div>
             <h2 className="text-3xl font-black text-white font-display mb-12 flex items-center gap-4 uppercase tracking-tighter">
               <span className="material-symbols-outlined text-primary text-4xl">map</span>
-              QUEST HISTORY <span className="text-slate-500 text-xs font-normal lowercase tracking-[0.4em] italic">(Experience)</span>
+              EXPERIENCE
             </h2>
             <div className="space-y-16 pl-10 border-l-4 border-primary/20 relative">
               {displayedExperience.map((exp, idx) => (

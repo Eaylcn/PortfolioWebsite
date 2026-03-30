@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import type { Experience, Certification, Reference, Stat } from '../types/database';
+import type { Experience, Certification, Reference, Stat, StoryChapter, TechStackItem } from '../types/database';
 
 const cache: Record<string, { data: any; timestamp: number }> = {};
 const CACHE_TTL = 5 * 60 * 1000;
@@ -40,9 +40,17 @@ export function useCertifications() {
 }
 
 export function useReferences() {
-  return useCachedQuery<Reference>('references', 'references_list');
+  return useCachedQuery<Reference>('references_list', 'references_list');
 }
 
 export function useStats() {
   return useCachedQuery<Stat>('stats', 'stats');
+}
+
+export function useStoryChapters() {
+  return useCachedQuery<StoryChapter>('story_chapters', 'story_chapters');
+}
+
+export function useTechStack() {
+  return useCachedQuery<TechStackItem>('tech_stack', 'tech_stack');
 }

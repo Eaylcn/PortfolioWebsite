@@ -14,13 +14,15 @@ import MobileDetailPage from './pages/MobileDetailPage';
 import WebDetailPage from './pages/WebDetailPage';
 import Footer from './components/shared/Footer';
 
-// Admin Imports — lazy loaded (code-split)
 const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
 const AdminProjects = React.lazy(() => import('./pages/admin/AdminProjects'));
 const AdminProjectForm = React.lazy(() => import('./pages/admin/AdminProjectForm'));
 const AdminShikai = React.lazy(() => import('./pages/admin/AdminShikai'));
 const AdminExperience = React.lazy(() => import('./pages/admin/AdminExperience'));
+const AdminStats = React.lazy(() => import('./pages/admin/AdminStats'));
+const AdminStory = React.lazy(() => import('./pages/admin/AdminStory'));
+const AdminTechStack = React.lazy(() => import('./pages/admin/AdminTechStack'));
 import { AdminLayout } from './components/admin/AdminLayout';
 import { AuthGuard } from './components/admin/AuthGuard';
 import { Outlet } from 'react-router-dom';
@@ -57,8 +59,12 @@ const App: React.FC = () => {
           <Route index element={<AdminSuspense><AdminDashboard /></AdminSuspense>} />
           <Route path="projects" element={<AdminSuspense><AdminProjects /></AdminSuspense>} />
           <Route path="projects/new" element={<AdminSuspense><AdminProjectForm /></AdminSuspense>} />
+          <Route path="projects/edit/:id" element={<AdminSuspense><AdminProjectForm /></AdminSuspense>} />
           <Route path="shikai" element={<AdminSuspense><AdminShikai /></AdminSuspense>} />
           <Route path="experience" element={<AdminSuspense><AdminExperience /></AdminSuspense>} />
+          <Route path="stats" element={<AdminSuspense><AdminStats /></AdminSuspense>} />
+          <Route path="story" element={<AdminSuspense><AdminStory /></AdminSuspense>} />
+          <Route path="tech-stack" element={<AdminSuspense><AdminTechStack /></AdminSuspense>} />
         </Route>
 
         {/* Public Website Routes */}

@@ -125,6 +125,33 @@ export interface Database {
         Insert: Omit<Database['public']['Tables']['stats']['Row'], 'id'> & { id?: string };
         Update: Partial<Database['public']['Tables']['stats']['Insert']>;
       };
+      story_chapters: {
+        Row: {
+          id: string;
+          title: string;
+          subtitle: string | null;
+          years: string;
+          icon: string | null;
+          content: string;
+          achievement: string | null;
+          achievement_icon: string | null;
+          sort_order: number;
+        };
+        Insert: Omit<Database['public']['Tables']['story_chapters']['Row'], 'id'> & { id?: string };
+        Update: Partial<Database['public']['Tables']['story_chapters']['Insert']>;
+      };
+      tech_stack: {
+        Row: {
+          id: string;
+          name: string;
+          category: string;
+          icon: string;
+          is_visible: boolean;
+          sort_order: number;
+        };
+        Insert: Omit<Database['public']['Tables']['tech_stack']['Row'], 'id'> & { id?: string };
+        Update: Partial<Database['public']['Tables']['tech_stack']['Insert']>;
+      };
     };
   };
 }
@@ -137,3 +164,6 @@ export type Experience = Database['public']['Tables']['experiences']['Row'];
 export type Certification = Database['public']['Tables']['certifications']['Row'];
 export type Reference = Database['public']['Tables']['references_list']['Row'];
 export type Stat = Database['public']['Tables']['stats']['Row'];
+export type StoryChapter = Database['public']['Tables']['story_chapters']['Row'];
+export type TechStackItem = Database['public']['Tables']['tech_stack']['Row'];
+
