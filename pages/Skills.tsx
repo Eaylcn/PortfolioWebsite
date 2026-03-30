@@ -1,10 +1,17 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { STATS, EXPERIENCE, CERTIFICATIONS, USER_KNOWLEDGE } from '../constants';
+import { USER_KNOWLEDGE } from '../constants';
+import { useStats, useExperiences, useCertifications } from '../hooks/useData';
 
 const Skills: React.FC = () => {
   const [showAllExperience, setShowAllExperience] = useState(false);
+
+  const { data: stats, loading: statsLoading } = useStats();
+  const { data: experiences, loading: expLoading } = useExperiences();
+  const { data: certifications, loading: certLoading } = useCertifications();
+
+  const isLoading = statsLoading || expLoading || certLoading;
 
   const arsenalItems = [
     { name: 'Selenium', category: 'Automation', icon: 'public' },
@@ -24,7 +31,15 @@ const Skills: React.FC = () => {
     { name: 'Unity', category: 'Game Dev', icon: 'deployed_code' }
   ];
 
-  const displayedExperience = showAllExperience ? EXPERIENCE : EXPERIENCE.slice(0, 2);
+  const displayedExperience = showAllExperience ? experiences : experiences.slice(0, 2);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-20 bg-background-dark">
+        <span className="material-symbols-outlined text-primary text-6xl animate-spin-slow">progress_activity</span>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-32">
@@ -57,9 +72,9 @@ const Skills: React.FC = () => {
                   {USER_KNOWLEDGE.name}
                 </h1>
                 <div className="flex flex-col sm:flex-row items-center gap-5 justify-center lg:justify-start pt-2">
-                  <p className="text-white text-2xl font-black tracking-widest uppercase border-b-2 border-primary">QA ENGINEER</p>
+                  <p className="text-white text-2xl font-black tracking-widest uppercase border-b-2 border-primary">GAME DEVELOPER</p>
                   <span className="hidden sm:inline size-2 rounded-full bg-primary/40"></span>
-                  <p className="text-slate-400 font-medium tracking-[0.4em] text-sm uppercase italic opacity-60">Digital Architect</p>
+                  <p className="text-slate-400 font-medium tracking-[0.4em] text-sm uppercase italic opacity-60">Product Manager</p>
                 </div>
               </div>
 
@@ -94,17 +109,17 @@ const Skills: React.FC = () => {
               ATTRIBUTES
             </h2>
             <div className="space-y-6">
-              {STATS.map(stat => (
-                <div key={stat.name} className="space-y-3 group/stat">
+              {stats.map(stat => (
+                <div key={stat.id} className="space-y-3 group/stat">
                   <div className="flex justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-widest group-hover/stat:text-white transition-colors">
                     <span className="flex items-center gap-3">
-                      <span className="size-8 rounded-lg bg-background-dark/80 flex items-center justify-center text-sm material-symbols-outlined" style={{ color: stat.color }}>{stat.icon}</span>
+                      <span className="size-8 rounded-lg bg-background-dark/80 flex items-center justify-center text-sm material-symbols-outlined" style={{ color: stat.color || undefined }}>{stat.icon}</span>
                       {stat.name}
                     </span>
-                    <span style={{ color: stat.color }} className="text-lg">{stat.value}</span>
+                    <span style={{ color: stat.color || undefined }} className="text-lg">{stat.value}</span>
                   </div>
                   <div className="h-2.5 w-full bg-slate-900 rounded-full overflow-hidden border border-white/5 shadow-inner">
-                    <div className="h-full shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-1000" style={{ width: `${stat.value}%`, backgroundColor: stat.color }}></div>
+                    <div className="h-full shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-1000" style={{ width: `${stat.value}%`, backgroundColor: stat.color || undefined }}></div>
                   </div>
                 </div>
               ))}
@@ -142,7 +157,7 @@ const Skills: React.FC = () => {
               ARTIFACTS <span className="text-slate-500 text-[10px] font-normal lowercase tracking-widest italic">(Certifications)</span>
             </h2>
             <div className="space-y-4">
-              {CERTIFICATIONS.map(cert => (
+              {certifications.map(cert => (
                 <div key={cert.id} className="p-5 bg-background-dark/40 border border-white/5 rounded-3xl flex items-center gap-5 hover:border-primary transition-all group shadow-md hover:bg-primary/5 relative">
                   <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                     <span className="material-symbols-outlined text-2xl">{cert.icon}</span>
@@ -243,7 +258,7 @@ const Skills: React.FC = () => {
               ))}
             </div>
 
-            {EXPERIENCE.length > 2 && (
+            {experiences.length > 2 && (
               <div className="mt-12 flex justify-center">
                 <button
                   onClick={() => setShowAllExperience(!showAllExperience)}

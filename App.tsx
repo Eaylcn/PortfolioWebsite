@@ -13,6 +13,17 @@ import GameDetailPage from './pages/GameDetailPage';
 import MobileDetailPage from './pages/MobileDetailPage';
 import WebDetailPage from './pages/WebDetailPage';
 
+// Admin Imports
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminProjects from './pages/admin/AdminProjects';
+import AdminProjectForm from './pages/admin/AdminProjectForm';
+import AdminShikai from './pages/admin/AdminShikai';
+import AdminExperience from './pages/admin/AdminExperience';
+import { AdminLayout } from './components/admin/AdminLayout';
+import { AuthGuard } from './components/admin/AuthGuard';
+import { Outlet } from 'react-router-dom';
+
 const Footer: React.FC = () => (
   <footer className="bg-background-dark/50 py-12 border-t border-border-dark/30 backdrop-blur-sm mt-auto w-full">
     <div className="max-w-7xl mx-auto px-4 flex flex-col items-center gap-8 text-center">
@@ -37,33 +48,51 @@ const Footer: React.FC = () => (
         </a>
       </div>
       <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.5em]">
-        © {new Date().getFullYear()} EMIR ATA YALÇIN • ARCHITECTED FOR QUALITY
+        © {new Date().getFullYear()} EMIR ATA YALÇIN • CRAFTED WITH VISION
       </p>
     </div>
   </footer>
 );
 
+const WebsiteLayout = () => (
+  <div className="min-h-screen bg-background-dark flex flex-col font-body">
+    <Navbar />
+    <BugOracle />
+    <main className="flex-grow flex flex-col">
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
+);
+
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-background-dark flex flex-col font-body">
-        <Navbar />
-        <BugOracle />
-        <main className="flex-grow flex flex-col">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/story" element={<Story />} />
-            <Route path="/games/:slug" element={<GameDetailPage />} />
-            <Route path="/mobile/:slug" element={<MobileDetailPage />} />
-            <Route path="/web/:slug" element={<WebDetailPage />} />
-            <Route path="/droid-shikai" element={<DroidShikai />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <Routes>
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        
+        <Route path="/admin" element={<AuthGuard><AdminLayout /></AuthGuard>}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="projects" element={<AdminProjects />} />
+          <Route path="projects/new" element={<AdminProjectForm />} />
+          <Route path="shikai" element={<AdminShikai />} />
+          <Route path="experience" element={<AdminExperience />} />
+        </Route>
+
+        {/* Public Website Routes */}
+        <Route path="/" element={<WebsiteLayout />}>
+          <Route index element={<Home />} />
+          <Route path="skills" element={<Skills />} />
+          <Route path="portfolio" element={<Portfolio />} />
+          <Route path="story" element={<Story />} />
+          <Route path="games/:slug" element={<GameDetailPage />} />
+          <Route path="mobile/:slug" element={<MobileDetailPage />} />
+          <Route path="web/:slug" element={<WebDetailPage />} />
+          <Route path="droid-shikai" element={<DroidShikai />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
     </Router>
   );
 };

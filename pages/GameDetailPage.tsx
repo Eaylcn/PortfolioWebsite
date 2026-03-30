@@ -1,34 +1,34 @@
 
 import { useParams, Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import { GameProject } from '../types';
+import React, { useState } from 'react';
+import { useProject } from '../hooks/useProjects';
 
 const GameDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [project, setProject] = useState<GameProject | null>(null);
+  const { project, loading, error } = useProject(slug);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch('/games.json')
-      .then(res => res.json())
-      .then((data: GameProject[]) => {
-        const found = data.find(p => p.slug === slug);
-        setProject(found || null);
-      });
-  }, [slug]);
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-20">
+        <span className="material-symbols-outlined text-primary text-6xl animate-spin-slow">progress_activity</span>
+      </div>
+    );
+  }
 
-  if (!project) {
+  if (!project || error) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20">
         <div className="text-center space-y-4">
-          <h2 className="text-4xl font-black text-white font-display">Quest Not Found</h2>
+          <h2 className="text-4xl font-black text-white font-display">Project Not Found</h2>
           <Link to="/portfolio" className="text-primary hover:underline">Back to Archive</Link>
         </div>
       </div>
     );
   }
 
-  const hasLinks = project.links && Object.keys(project.links).length > 0;
+  const links = (project.links || {}) as Record<string, string>;
+  const hasLinks = Object.keys(links).length > 0;
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-background-dark">
@@ -37,12 +37,12 @@ const GameDetailPage: React.FC = () => {
         {/* Back Button */}
         <Link to="/portfolio" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-bold uppercase tracking-widest text-xs mb-8 group">
           <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">chevron_left</span>
-          Back to Quest Log
+          Back to Archive
         </Link>
 
         {/* Hero Section */}
         <div className="relative rounded-[3rem] overflow-hidden border border-border-dark mb-12 shadow-2xl aspect-[21/9]">
-          <img src={project.imageUrl} className="w-full h-full object-cover" alt={project.title} />
+          <img src={project.image_url || ''} className="w-full h-full object-cover" alt={project.title} />
           <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
           <div className="absolute bottom-10 left-10 right-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2">
@@ -73,27 +73,26 @@ const GameDetailPage: React.FC = () => {
             <section className="bg-card-dark p-10 rounded-[2.5rem] border border-border-dark shadow-xl">
               <h2 className="text-2xl font-black text-white font-display mb-6 uppercase tracking-tighter flex items-center gap-3">
                 <span className="material-symbols-outlined text-primary">description</span>
-                Campaign Intel
+                About This Project
               </h2>
               <p className="text-slate-300 text-lg leading-relaxed font-light italic">
-                {project.longDescription}
+                {project.long_description}
               </p>
             </section>
 
-            {/* NEW GALLERY SECTION */}
+            {/* Gallery */}
             {project.gallery && project.gallery.length > 0 && (
               <section className="bg-card-dark p-10 rounded-[2.5rem] border border-border-dark shadow-xl">
                 <h2 className="text-2xl font-black text-white font-display mb-8 uppercase tracking-tighter flex items-center gap-3">
                   <span className="material-symbols-outlined text-primary">collections</span>
-                  Visual Evidence
+                  Gallery
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Ana görsel ilk sırada */}
                   <div
-                    onClick={() => setLightboxImage(project.imageUrl)}
+                    onClick={() => setLightboxImage(project.image_url || '')}
                     className="relative rounded-3xl overflow-hidden border border-white/10 aspect-video group cursor-zoom-in hover:border-primary/50 transition-colors"
                   >
-                    <img src={project.imageUrl} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Main" />
+                    <img src={project.image_url || ''} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Main" />
                     <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <span className="material-symbols-outlined text-4xl text-white drop-shadow-lg">zoom_in</span>
                     </div>
@@ -155,13 +154,13 @@ const GameDetailPage: React.FC = () => {
               </div>
               <h3 className="text-white font-black font-display uppercase tracking-widest text-xs border-b border-white/10 pb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-sm">hub</span>
-                Transmission Hub
+                Links
               </h3>
 
               {hasLinks ? (
                 <div className="space-y-3">
-                  {project.links.steam && (
-                    <a href={project.links.steam} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl transition-colors group">
+                  {links.steam && (
+                    <a href={links.steam} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl transition-colors group">
                       <span className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-3">
                         <span className="material-symbols-outlined text-primary">shopping_cart</span>
                         Steam Store
@@ -169,8 +168,8 @@ const GameDetailPage: React.FC = () => {
                       <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </a>
                   )}
-                  {project.links.github && (
-                    <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl transition-colors group">
+                  {links.github && (
+                    <a href={links.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between w-full bg-slate-800 hover:bg-slate-700 p-4 rounded-xl transition-colors group">
                       <span className="text-white font-bold text-xs uppercase tracking-widest flex items-center gap-3">
                         <span className="material-symbols-outlined text-primary">terminal</span>
                         Source Code
@@ -183,8 +182,8 @@ const GameDetailPage: React.FC = () => {
                 <div className="space-y-4">
                   <div className="p-6 bg-background-dark/80 rounded-2xl border border-dashed border-white/10 flex flex-col items-center text-center gap-3">
                     <span className="material-symbols-outlined text-3xl text-slate-600 animate-pulse">lock</span>
-                    <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Access Restricted</p>
-                    <p className="text-[9px] text-slate-600 italic">This artifact is held in the Master's private vault. Public uplinks are currently offline.</p>
+                    <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Private Project</p>
+                    <p className="text-[9px] text-slate-600 italic">This project is not yet publicly available. Contact me for access or demos.</p>
                   </div>
                   <Link to="/contact" className="flex items-center justify-center gap-2 w-full py-3 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">
                     Request Access
@@ -198,7 +197,7 @@ const GameDetailPage: React.FC = () => {
               <section className="bg-primary/5 p-8 rounded-[2.5rem] border border-primary/20 shadow-xl space-y-6">
                 <h3 className="text-primary font-black font-display uppercase tracking-widest text-xs border-b border-primary/10 pb-4 flex items-center gap-2">
                   <span className="material-symbols-outlined text-sm">rocket_launch</span>
-                  Future Roadmap
+                  Roadmap
                 </h3>
                 <div className="space-y-4">
                   {project.roadmap.map((step, i) => (
@@ -215,7 +214,7 @@ const GameDetailPage: React.FC = () => {
               <div className="absolute -right-4 -top-4 size-24 bg-primary/10 rounded-full blur-2xl"></div>
               <div className="flex items-center gap-3 text-primary">
                 <span className="material-symbols-outlined font-bold">military_tech</span>
-                <span className="font-black uppercase tracking-widest text-xs">Assigned Role</span>
+                <span className="font-black uppercase tracking-widest text-xs">Role</span>
               </div>
               <p className="text-white font-bold text-xl leading-tight">{project.role}</p>
               <div className="flex flex-wrap gap-2 pt-2">

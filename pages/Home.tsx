@@ -1,12 +1,20 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { STATS, PROJECTS, REFERENCES } from '../constants';
+import { useStats, useReferences } from '../hooks/useData';
+import { useFeaturedProjects } from '../hooks/useProjects';
+import type { Project } from '../types/database';
 
 const Home: React.FC = () => {
   const scrollRefs = useRef<(HTMLElement | null)[]>([]);
   const heroBgRef = useRef<HTMLDivElement>(null);
   const [hoveredStat, setHoveredStat] = useState<string | null>(null);
+
+  const { data: stats, loading: statsLoading } = useStats();
+  const { projects: featuredProjects, loading: projectsLoading } = useFeaturedProjects();
+  const { data: references, loading: refsLoading } = useReferences();
+
+  const isLoading = statsLoading || projectsLoading || refsLoading;
 
   useEffect(() => {
     // Parallax Effect Logic
@@ -45,14 +53,17 @@ const Home: React.FC = () => {
     scrollRefs.current[index] = el;
   };
 
-  const getDetailPath = (project: any) => {
-    const catMap: Record<string, string> = {
-      'Mobile': 'mobile',
-      'PC': 'games',
-      'Web': 'web'
-    };
-    return `/${catMap[project.category]}/${project.slug}`;
+  const getDetailPath = (project: Project) => {
+    return `/${project.category === 'game' ? 'games' : project.category}/${project.slug}`;
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-20 bg-background-dark">
+        <span className="material-symbols-outlined text-primary text-6xl animate-spin-slow">progress_activity</span>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col overflow-hidden">
@@ -76,29 +87,29 @@ const Home: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              QA Engineer | Emir Ata Yalcin
+              Game Developer | Product Manager
             </div>
             {/* Open to Work Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-black uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(34,197,94,0.2)] animate-pulse">
               <span className="material-symbols-outlined text-xs">rocket_launch</span>
-              Available for New Campaigns
+              Available for New Projects
             </div>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black font-display tracking-tight text-white leading-[0.85] drop-shadow-2xl">
-            Bug Hunter in a <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-purple-400 animate-gradient-x">Digital Realm</span>
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black font-display tracking-tight text-white leading-[0.85] drop-shadow-2xl uppercase">
+            Architect of <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-purple-400 animate-gradient-x">Digital Worlds</span>
           </h1>
-          <p className="text-lg sm:text-2xl text-slate-300 max-w-3xl font-body font-light leading-relaxed mt-4">
-            Forging software stability through technical precision and RPG-inspired creativity. QA Engineer, Game Dev, and Prompt Sorcerer.
+          <p className="text-lg sm:text-2xl text-slate-300 max-w-3xl font-body font-light leading-relaxed mt-4 italic">
+            Bridging technical precision with creative game design and seamless product management.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 mt-6">
             <Link to="/portfolio" className="bg-primary hover:bg-blue-600 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-glow hover:shadow-glow-hover hover:-translate-y-2 flex items-center justify-center gap-2 min-w-[200px] active:scale-95">
-              <span>Begin Quest</span>
-              <span className="material-symbols-outlined">swords</span>
+              <span>Explore Archive</span>
+              <span className="material-symbols-outlined">folder_open</span>
             </Link>
             <Link to="/skills" className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all duration-300 hover:-translate-y-2 flex items-center justify-center gap-2 min-w-[200px] backdrop-blur-md active:scale-95">
-              <span>Inspect Stats</span>
+              <span>View Skillset</span>
               <span className="material-symbols-outlined">person_search</span>
             </Link>
           </div>
@@ -112,10 +123,10 @@ const Home: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl md:text-5xl font-black text-white font-display mb-16 text-center uppercase tracking-tighter">
-            Combat <span className="text-primary">Attributes</span>
+            Core <span className="text-primary">Competencies</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {STATS.map((stat) => (
+            {stats.map((stat) => (
               <div
                 key={stat.name}
                 onMouseEnter={() => setHoveredStat(stat.name)}
@@ -158,11 +169,11 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
             <div className="space-y-4">
               <h2 className="text-4xl md:text-6xl font-black text-white font-display flex items-center gap-4 uppercase tracking-tighter">
-                <span className="material-symbols-outlined text-primary text-5xl">map</span>
-                Quest Log
+                <span className="material-symbols-outlined text-primary text-5xl">folder_special</span>
+                Featured Projects
               </h2>
               <p className="text-xl text-slate-400 max-w-2xl font-light italic">
-                A chronicle of previous campaigns where software quality was defended. From mobile battlegrounds to PC high-fidelity simulations.
+                A selection of high-impact products, from complex mobile apps to experimental game prototypes.
               </p>
             </div>
             <Link to="/portfolio" className="text-primary hover:text-white font-bold flex items-center gap-2 transition-all uppercase tracking-widest text-sm bg-primary/5 px-6 py-3 rounded-xl border border-primary/20 hover:bg-primary/10">
@@ -172,10 +183,10 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.slice(0, 3).map(project => (
+            {featuredProjects.slice(0, 3).map(project => (
               <Link to={getDetailPath(project)} key={project.id} className="block group rounded-[2.5rem] bg-card-dark border border-border-dark overflow-hidden hover:border-primary/50 transition-all duration-500 shadow-xl transform hover:-translate-y-2">
                 <div className="aspect-[16/10] relative overflow-hidden">
-                  <img src={project.imageUrl} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100" alt={project.title} />
+                  <img src={project.image_url || ''} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100" alt={project.title} />
                   <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 flex gap-2">
                     {project.tags.slice(0, 2).map(tag => (
@@ -277,16 +288,16 @@ const Home: React.FC = () => {
             {/* Horizontal Scrollable Carousel */}
             <div className="relative">
               <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar pt-8 pb-6 pl-8 pr-4">
-                {REFERENCES.map((ref, i) => (
+                {references.map((ref, i) => (
                   <a
                     key={i}
-                    href={ref.linkedin}
+                    href={ref.linkedin || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-none w-[320px] sm:w-[420px] bg-card-dark p-6 sm:p-8 pt-10 sm:pt-12 rounded-[2rem] border border-border-dark relative group transition-all hover:-translate-y-3 hover:border-primary/50 shadow-xl snap-center cursor-pointer"
                   >
                     <div className="absolute -top-4 left-4 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border-4 border-primary overflow-hidden shadow-glow bg-card-dark z-10">
-                      <img src={ref.avatar} alt={ref.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <img src={ref.avatar_url || ''} alt={ref.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     </div>
                     <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                       <span className="material-symbols-outlined text-primary text-lg">open_in_new</span>

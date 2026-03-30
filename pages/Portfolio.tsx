@@ -1,27 +1,20 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GameProject, MobileProject, WebProject } from '../types';
+import { useProjects } from '../hooks/useProjects';
+import type { Project } from '../types/database';
 
 type Category = 'Games' | 'Mobile' | 'Web';
 
+const categoryToDbCategory: Record<Category, 'game' | 'mobile' | 'web'> = {
+  Games: 'game',
+  Mobile: 'mobile',
+  Web: 'web',
+};
+
 const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('Games');
-  const [data, setData] = useState<{
-    Games: GameProject[];
-    Mobile: MobileProject[];
-    Web: WebProject[];
-  }>({ Games: [], Mobile: [], Web: [] });
-
-  useEffect(() => {
-    Promise.all([
-      fetch('/games.json').then(r => r.json()),
-      fetch('/mobile.json').then(r => r.json()),
-      fetch('/web.json').then(r => r.json()),
-    ]).then(([games, mobile, web]) => {
-      setData({ Games: games, Mobile: mobile, Web: web });
-    });
-  }, []);
+  const { projects, loading } = useProjects(categoryToDbCategory[activeCategory]);
 
   const categories = [
     { name: 'Games' as Category, icon: 'stadia_controller', color: '#135bec' },
@@ -29,15 +22,8 @@ const Portfolio: React.FC = () => {
     { name: 'Web' as Category, icon: 'language', color: '#10b981' }
   ];
 
-  const currentProjects = data[activeCategory];
-
-  const getDetailPath = (slug: string) => {
-    const catMap = {
-      'Games': 'games',
-      'Mobile': 'mobile',
-      'Web': 'web'
-    };
-    return `/${catMap[activeCategory]}/${slug}`;
+  const getDetailPath = (project: Project) => {
+    return `/${project.category === 'game' ? 'games' : project.category}/${project.slug}`;
   };
 
   return (
@@ -57,16 +43,16 @@ const Portfolio: React.FC = () => {
               The Grand Archive
             </div>
             <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-white drop-shadow-2xl font-display uppercase leading-[0.85]">
-              QUEST <span className="text-primary">HISTORY</span>
+              PROJECT <span className="text-primary">ARCHIVE</span>
             </h1>
             <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-lg italic">
-              A chronicle of digital worlds explored, built, and fortified. Every project is an artifact of quality.
+              A chronicle of digital worlds explored, built, and shipped. Every project is a milestone.
             </p>
           </div>
         </div>
       </section>
 
-      {/* RPG Style Category Tabs */}
+      {/* Category Tabs */}
       <div className="flex flex-wrap gap-4 justify-center mb-16 relative">
         {categories.map(cat => (
           <button
@@ -88,62 +74,72 @@ const Portfolio: React.FC = () => {
         ))}
       </div>
 
-      {/* Animated Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {currentProjects.map(project => (
-          <Link
-            to={getDetailPath(project.slug)}
-            key={project.id}
-            className="group flex flex-col rounded-[2.5rem] bg-card-dark border border-border-dark overflow-hidden hover:border-primary/50 transition-all duration-700 hover:shadow-[0_20px_60px_-15px_rgba(19,91,236,0.2)] transform hover:-translate-y-3"
-          >
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] group-hover:scale-125"
-                style={{ backgroundImage: `url(${project.imageUrl})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background-dark/95 via-transparent to-transparent"></div>
+      {/* Loading State */}
+      {loading && (
+        <div className="py-32 text-center space-y-4">
+          <span className="material-symbols-outlined text-primary text-6xl animate-spin-slow">progress_activity</span>
+          <p className="text-slate-500 text-sm uppercase tracking-widest font-bold">Loading archive...</p>
+        </div>
+      )}
 
-              <div className="absolute top-5 right-5 flex gap-2">
-                <span className="bg-background-dark/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-[9px] font-black text-white uppercase tracking-widest">
-                  {project.category}
-                </span>
-              </div>
-            </div>
+      {/* Project Grid */}
+      {!loading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {projects.map(project => (
+            <Link
+              to={getDetailPath(project)}
+              key={project.id}
+              className="group flex flex-col rounded-[2.5rem] bg-card-dark border border-border-dark overflow-hidden hover:border-primary/50 transition-all duration-700 hover:shadow-[0_20px_60px_-15px_rgba(19,91,236,0.2)] transform hover:-translate-y-3"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] group-hover:scale-125"
+                  style={{ backgroundImage: `url(${project.image_url})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background-dark/95 via-transparent to-transparent"></div>
 
-            <div className="p-8 flex flex-col flex-1 space-y-4">
-              <h3 className="text-2xl font-black text-white group-hover:text-primary transition-colors font-display uppercase tracking-tight">
-                {project.title}
-              </h3>
-              <div className="flex items-center gap-3">
-                <div className="size-2 rounded-full bg-primary animate-pulse"></div>
-                <p className="text-primary text-[10px] font-black uppercase tracking-[0.2em]">{project.role}</p>
-              </div>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 font-body flex-1 line-clamp-3 italic font-light">
-                {project.description}
-              </p>
-
-              <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
-                <div className="flex gap-2">
-                  {project.tags.slice(0, 2).map(tag => (
-                    <span key={tag} className="px-3 py-1 text-[8px] font-black bg-slate-800 text-slate-400 rounded-lg border border-white/5 uppercase tracking-widest">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-[10px] font-black text-white group-hover:text-primary flex items-center gap-2 transition-all group/btn uppercase tracking-widest">
-                  INSPECT ARCHIVE
-                  <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-2 transition-transform">arrow_forward</span>
+                <div className="absolute top-5 right-5 flex gap-2">
+                  <span className="bg-background-dark/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-[9px] font-black text-white uppercase tracking-widest">
+                    {project.category}
+                  </span>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
 
-      {currentProjects.length === 0 && (
+              <div className="p-8 flex flex-col flex-1 space-y-4">
+                <h3 className="text-2xl font-black text-white group-hover:text-primary transition-colors font-display uppercase tracking-tight">
+                  {project.title}
+                </h3>
+                <div className="flex items-center gap-3">
+                  <div className="size-2 rounded-full bg-primary animate-pulse"></div>
+                  <p className="text-primary text-[10px] font-black uppercase tracking-[0.2em]">{project.role}</p>
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6 font-body flex-1 line-clamp-3 italic font-light">
+                  {project.description}
+                </p>
+
+                <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                  <div className="flex gap-2">
+                    {project.tags.slice(0, 2).map(tag => (
+                      <span key={tag} className="px-3 py-1 text-[8px] font-black bg-slate-800 text-slate-400 rounded-lg border border-white/5 uppercase tracking-widest">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-[10px] font-black text-white group-hover:text-primary flex items-center gap-2 transition-all group/btn uppercase tracking-widest">
+                    VIEW PROJECT
+                    <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-2 transition-transform">arrow_forward</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+
+      {!loading && projects.length === 0 && (
         <div className="py-32 text-center space-y-4">
           <span className="material-symbols-outlined text-slate-700 text-8xl">inventory_2</span>
-          <p className="text-slate-500 font-mono text-sm uppercase tracking-widest">Archive slice is currently empty or encrypted.</p>
+          <p className="text-slate-500 font-mono text-sm uppercase tracking-widest">No projects found in this category.</p>
         </div>
       )}
     </div>

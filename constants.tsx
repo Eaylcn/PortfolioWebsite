@@ -1,161 +1,13 @@
-
-import { Project, Stat, Experience, Certification } from './types';
-
-export const PROJECTS: Project[] = [
-  {
-    id: 'm-tuty',
-    slug: 'tuty',
-    title: 'Tuty',
-    category: 'Mobile',
-    role: 'Solo Developer / Full-Stack Mobile Architect',
-    description: 'Your beauty collection, intelligently organized. A smart inventory system for makeup and skincare.',
-    tags: ['Flutter', 'AI-Ready', 'Firebase'],
-    imageUrl: '/projects/mobile/Tuty.PNG',
-    platforms: ['iOS', 'Android']
-  },
-  {
-    id: 'g-cheassy',
-    slug: 'cardcheassy',
-    title: 'CardCheassy',
-    category: 'PC',
-    role: 'Game Developer & Designer',
-    description: 'A unique game combining card-based strategy with tactical chess-like gameplay.',
-    tags: ['Unity', 'Strategy'],
-    imageUrl: '/projects/games/CardCheassy.PNG',
-    platforms: ['PC']
-  },
-  {
-    id: 'w-grand-archive',
-    slug: 'qa-forge-archive',
-    title: 'The Grand Archive',
-    category: 'Web',
-    role: 'Full-Stack Architect',
-    description: 'An RPG-themed professional portfolio integrated with Gemini AI.',
-    tags: ['React', 'AI-Driven'],
-    imageUrl: '/projects/web/thegrandarchive.PNG',
-    platforms: ['Web']
-  }
-];
-
-export const STATS: Stat[] = [
-  { name: 'Automation Mastery', value: 83, icon: 'auto_fix_high', description: 'Selenium, Appium & Cucumber prowess.', color: '#135bec' },
-  { name: 'Game Development', value: 85, icon: 'api', description: 'Unity, C#', color: '#10b981' },
-  { name: 'Mobile Defense', value: 88, icon: 'smartphone', description: 'Android & iOS testing protocols.', color: '#8b5cf6' },
-  { name: 'Graphic Design', value: 90, icon: 'draw', description: 'Graphic Design', color: '#f59e0b' }
-];
-
-export const EXPERIENCE: Experience[] = [
-  {
-    id: 'eriklabs',
-    title: 'Test Engineer / QA Engineer',
-    company: 'ERIKLABS',
-    period: '07.10.2024 – 06.10.2025',
-    description: [
-      'QA consultancy at ATP for the Tradesoft project (mobile stock trading application).',
-      'Designed and automated regression and functional tests using Cucumber (BDD) with Java.',
-      'Performed API testing with RestAssured (automation), Karate (BDD), and Postman (manual).',
-      'Integrated automated tests into the CI/CD pipeline.',
-      'Contributed as a QA Engineer in a web project, supporting manual testing and quality assurance.'
-    ]
-  },
-  {
-    id: 'bluecloud',
-    title: 'Associate Test Engineer',
-    company: 'BLUECLOUD',
-    period: '06.11.2023 – 27.09.2024',
-    description: [
-      'Performed manual and automation testing for the InXpress project.',
-      'Developed automated BDD tests with Cucumber and Gherkin.',
-      'Executed regression and smoke tests; tested new UAT features based on JIRA tickets.',
-      'Automated CI/CD processes with Jenkins.',
-      'Actively participated in daily stand-ups and sprint planning.'
-    ]
-  },
-  {
-    id: 'feedbackfruits',
-    title: 'QA Automation Engineer Trainee',
-    company: 'FEEDBACKFRUITS',
-    period: '20.02.2023 – 18.08.2023',
-    description: [
-      'Specialized in frontend testing using Ember.js.',
-      'Focused on UI acceptance tests to ensure quality and functionality.',
-      'Built expertise in writing effective frontend tests.'
-    ]
-  },
-  {
-    id: 'huawei',
-    title: 'QA Automation Engineer Intern',
-    company: 'HUAWEI',
-    period: '26.12.2022 – 17.02.2023',
-    description: [
-      "Worked in the QuickApp project's Test and Automation team.",
-      'Performed mobile tests on QuickApp IDE.',
-      'Utilized DeviceFarmer with Docker for physical mobile device testing.'
-    ]
-  },
-  {
-    id: 'ibtech',
-    title: 'QA Automation Engineer Intern',
-    company: 'IBTECH',
-    period: '16.05.2022 – 16.11.2022',
-    description: [
-      'Set up test automation projects and analyzed test results.',
-      'Gained hands-on experience with Selenium, Appium, and Robot Framework.'
-    ]
-  }
-];
-
-export const CERTIFICATIONS: Certification[] = [
-  {
-    title: 'ISTQB® CTFL',
-    id: 'CTFL',
-    issuer: 'ISTQB',
-    icon: 'verified_user',
-    rarity: 'Legendary',
-    url: 'https://app.diplomasafe.com/en-US/certificates/d76d532f338e53977cf2e5f8460dcb499b63ba8fc'
-  },
-  {
-    title: 'English - CEFR B2',
-    id: 'EN-B2',
-    issuer: 'Duolingo / CEFR',
-    icon: 'language',
-    rarity: 'Epic',
-    url: 'https://certs.duolingo.com/jhjl9gb0yssamblq'
-  }
-];
-
-export const REFERENCES = [
-  {
-    name: "Silas Hayri",
-    role: "Senior QA Automation Engineer at BlueCloud",
-    text: "Emir takes full ownership of his work, maintains quality under pressure, and communicates with clarity, making him a true team player.",
-    avatar: "https://media.licdn.com/dms/image/v2/D4D03AQF1wqYk4puQkA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1680395950289?e=1767830400&v=beta&t=XBkyJuZ-qO27gHn8ijKVbONAUid9V-ee1PwDjXiQSd8",
-    linkedin: "https://www.linkedin.com/in/silashayri"
-  },
-  {
-    name: "Jordi Ruijs",
-    role: "Lead QA Engineer at FeedbackFruits",
-    text: "Emir’s systematic approach to quality and his ability to think like both a developer and a tester are rare. He spots issues early and drives higher quality across the product.",
-    avatar: "https://media.licdn.com/dms/image/v2/D4E03AQGZDvbbx9fW3Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718268496655?e=1767830400&v=beta&t=ekT6x75i3cjwZE58SF4Khuc8WoFvZjh3o4Lr15j4Kco",
-    linkedin: "https://www.linkedin.com/in/jordiruijs/"
-  },
-  {
-    name: "Ozan Can Altıok",
-    role: "Senior Software Engineer at BlueCloud",
-    text: "Working with Emir means knowing your code will be tested thoroughly and your systems will be bulletproof.",
-    avatar: "https://media.licdn.com/dms/image/v2/C5603AQHWg3AzQbnXQg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1567110034701?e=1767830400&v=beta&t=-sw2SCpdqs0VBIU6fM0CtXLaL-CzOWLbSUQwb7j9BF4",
-    linkedin: "https://www.linkedin.com/in/ozancanaltiok/"
-  }
-];
+import { Project } from './types/database';
 
 export const USER_KNOWLEDGE = {
   name: "Emir Ata Yalcin",
-  role: "Senior QA Automation Engineer",
+  role: "Game Developer & Product Manager",
   email: "eaylcn.business@gmail.com",
   linkedin: "https://linkedin.com/in/emir-ata-yalcin",
   github: "https://github.com/Eaylcn",
   location: "Istanbul, Turkey",
-  identity: "Software engineering graduate with strong QA expertise in manual, automation, and API testing. I bridge technical rigor with creative software architecture and game design.",
+  identity: "Software engineering graduate with a passion for building games and managing digital products. I bridge technical rigor with creative game design and product strategy.",
   education: {
     degree: "Bachelor's Degree in Software Engineering",
     institution: "Bahçeşehir University",
@@ -168,7 +20,7 @@ export const USER_KNOWLEDGE = {
     ]
   },
 
-  philosophy: "Quality is a continuous state of refinement. I build digital structures that resist chaos through technical discipline.",
+  philosophy: "Great products emerge from technical discipline combined with creative vision. I aim to build engaging games and intuitive digital architectures that leave a lasting impact.",
 
   character_traits: {
     positive: ["Curious", "Patient", "System-oriented", "Detail-focused"],
@@ -188,14 +40,14 @@ export const USER_KNOWLEDGE = {
     "Graphic design"
   ],
 
-  likes: ["Optimized automation", "Deep lore", "Clean API design", "Strategy mechanics"],
-  dislikes: ["Unstable environments", "Superficiality", "Lack of technical transparency"],
+  likes: ["Game mechanics", "Deep lore", "Clean UI/UX", "Strategy game design", "Product optimization"],
+  dislikes: ["Unstable gameplay", "Superficial systems", "Lack of clear product vision"],
 
   skills: {
-    testing: ["Automation Testing", "Manual Testing", "Mobile Testing", "API Testing", "Frontend Testing"],
-    tools: ["Selenium", "Appium", "Robot Framework", "Cucumber", "Gherkin", "RestAssured", "Karate", "Postman", "Jenkins", "Docker", "JIRA"],
-    languages: ["Java", "C#"],
-    creative: ["Game Development", "Graphic Design", "UI/UX Architecture"]
+    core: ["Game Development", "Product Management", "Software Architecture", "UI/UX Design"],
+    testing_and_qa: ["Automation Testing", "Manual Testing", "API Testing"],
+    languages: ["C#", "Java", "TypeScript", "Python"],
+    tools: ["Unity", "Unreal Engine", "JIRA", "Figma", "Docker", "Jenkins"]
   },
 
   // Work Experience Summary

@@ -1,9 +1,10 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { SHIKAI_LORE } from '../constants';
+import { useShikaiCollections } from '../hooks/useShikai';
 
 interface ArtifactImage {
-  file: string;
+  file_url: string;
   prompt: string;
 }
 
@@ -14,7 +15,7 @@ interface ArtifactSet {
   freq: string;
   lore: string;
   folder: string;
-  isNew?: boolean;
+  is_new?: boolean;
   images: ArtifactImage[];
 }
 
@@ -42,32 +43,28 @@ const DroidShikai: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  // Fetch shikai.json data
+  const { collections, loading: shikaiLoading } = useShikaiCollections();
+
+  // Map to the format component expects
   useEffect(() => {
-    fetch('/shikai.json')
-      .then(res => res.json())
-      .then(data => {
-        const sets: ArtifactSet[] = data.artifacts.map((collection: any) => ({
-          id: collection.id,
-          title: collection.title,
-          series: collection.series,
-          freq: collection.freq,
-          lore: collection.lore,
-          folder: collection.folder,
-          isNew: collection.isNew || false,
-          images: collection.images.map((img: { file: string; prompt: string }) => ({
-            file: `${basePath}/${collection.folder}/${img.file}`,
-            prompt: img.prompt
-          }))
-        })).reverse();
-        setArtifactSets(sets);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load shikai.json:', err);
-        setIsLoading(false);
-      });
-  }, []);
+    if (!shikaiLoading && collections) {
+      const sets: ArtifactSet[] = collections.map(col => ({
+        id: col.id,
+        title: col.title,
+        series: col.series,
+        freq: col.freq,
+        lore: col.lore,
+        folder: col.folder,
+        is_new: col.is_new,
+        images: col.images.map(img => ({
+          file_url: img.file_url,
+          prompt: img.prompt
+        }))
+      }));
+      setArtifactSets(sets);
+      setIsLoading(false);
+    }
+  }, [collections, shikaiLoading]);
 
   const originalQuote = "How worlds can be built from interpretation rather than facts. Shikai exists to explore the boundary between art and artificial intelligence.";
   const secretQuote = "Reality is just a canvas for those who dare to observe differently. The machine dreams, and the dream becomes art.";
@@ -103,7 +100,7 @@ const DroidShikai: React.FC = () => {
   const handleDownload = async () => {
     if (!selectedArtifact) return;
 
-    const imageUrl = selectedArtifact.images[activeImageIdx].file;
+    const imageUrl = selectedArtifact.images[activeImageIdx].file_url;
     const fileName = `${selectedArtifact.title.replace(/\s+/g, '_')}_${activeImageIdx + 1}.jpg`;
 
     try {
@@ -380,7 +377,7 @@ const DroidShikai: React.FC = () => {
                 >
                   {artifactSets.map((set, idx) => (
                     <div
-                      key={idx}
+                      key={set.id}
                       onClick={() => openArtifact(set)}
                       className="flex-none w-[85%] sm:w-[45%] lg:w-[32%] snap-center group bg-card-dark border border-border-dark rounded-[2.5rem] overflow-hidden shadow-xl hover:border-primary transition-all hover:-translate-y-2 cursor-pointer"
                     >
@@ -388,7 +385,7 @@ const DroidShikai: React.FC = () => {
                       <div className="aspect-square grid grid-cols-2 gap-0.5 bg-border-dark/30 p-0.5 overflow-hidden">
                         {set.images.map((img, i) => (
                           <div key={i} className="relative overflow-hidden">
-                            <img src={img.file} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={`${set.title} variant ${i}`} />
+                            <img src={img.file_url} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={`${set.title} variant ${i}`} />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                           </div>
                         ))}
@@ -401,7 +398,7 @@ const DroidShikai: React.FC = () => {
                       <div className="p-8 space-y-2">
                         <div className="flex items-center gap-2">
                           <h3 className="text-2xl font-black text-white font-display group-hover:text-primary transition-colors uppercase leading-none">{set.title}</h3>
-                          {set.isNew && (
+                          {set.is_new && (
                             <span className="px-2 py-0.5 bg-green-500 text-white text-[8px] font-black uppercase tracking-widest rounded-full animate-pulse">NEW</span>
                           )}
                         </div>
@@ -428,7 +425,7 @@ const DroidShikai: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[80vh] overflow-y-auto hide-scrollbar pb-10 px-4">
                 {artifactSets.map((set, idx) => (
                   <div
-                    key={idx}
+                    key={set.id}
                     onClick={() => openArtifact(set)}
                     className="group bg-card-dark border border-border-dark rounded-[2rem] overflow-hidden shadow-xl hover:border-primary transition-all hover:-translate-y-2 cursor-pointer"
                   >
@@ -436,7 +433,7 @@ const DroidShikai: React.FC = () => {
                     <div className="aspect-square grid grid-cols-2 gap-0.5 bg-border-dark/30 p-0.5 overflow-hidden relative">
                       {set.images.map((img, i) => (
                         <div key={i} className="relative overflow-hidden">
-                          <img src={img.file} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={`${set.title} variant ${i}`} />
+                          <img src={img.file_url} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={`${set.title} variant ${i}`} />
                           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         </div>
                       ))}
@@ -451,7 +448,7 @@ const DroidShikai: React.FC = () => {
                         <span className="text-primary font-black">{set.series}</span>
                         <span className="text-slate-600">//</span>
                         <span className="text-slate-500 font-mono">{set.freq}</span>
-                        {set.isNew && (
+                        {set.is_new && (
                           <span className="px-2 py-0.5 bg-green-500 text-white text-[8px] font-black uppercase tracking-widest rounded-full animate-pulse">NEW</span>
                         )}
                       </div>
@@ -526,9 +523,9 @@ const DroidShikai: React.FC = () => {
                   {/* Image Container - Proper height constraints */}
                   <div className="relative flex-1 min-h-[50vh] lg:min-h-0 flex items-center justify-center p-4">
                     <img
-                      src={selectedArtifact.images[activeImageIdx].file}
-                      className="max-w-full max-h-[70vh] lg:max-h-[75vh] w-auto h-auto object-contain"
-                      alt={selectedArtifact.title}
+                      src={selectedArtifact.images[activeImageIdx].file_url}
+                      alt={`${selectedArtifact.title} Detail`}
+                      className="w-full h-full object-contain"
                     />
 
                     {/* Navigation Arrows */}
