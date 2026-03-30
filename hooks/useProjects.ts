@@ -4,7 +4,7 @@ import type { Project } from '../types/database';
 
 // Simple in-memory cache
 const cache: Record<string, { data: any; timestamp: number }> = {};
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const CACHE_TTL = 2 * 60 * 1000; // 2 minutes
 
 function getCached<T>(key: string): T | null {
   const entry = cache[key];
@@ -16,6 +16,11 @@ function getCached<T>(key: string): T | null {
 
 function setCache(key: string, data: any) {
   cache[key] = { data, timestamp: Date.now() };
+}
+
+// Clear all project caches (called after admin updates)
+export function clearProjectCache() {
+  Object.keys(cache).forEach(key => delete cache[key]);
 }
 
 // Fetch all visible projects by category
