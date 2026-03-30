@@ -5,6 +5,7 @@ import type { ShikaiCollection, ShikaiImage } from '../../types/database';
 const AdminShikai: React.FC = () => {
   const [collections, setCollections] = useState<(ShikaiCollection & { images: ShikaiImage[] })[]>([]);
   const [loading, setLoading] = useState(true);
+  const [seeding, setSeeding] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({ title: '', series: '', freq: '', lore: '', folder: '' });
 
@@ -27,13 +28,57 @@ const AdminShikai: React.FC = () => {
 
   useEffect(() => { fetchData(); }, []);
 
+  const seedFromJson = async () => {
+    setSeeding(true);
+    try {
+      const res = await fetch('/shikai.json');
+      const data = await res.json();
+      const basePath = '/projects/shikai/Shikai Collection';
+      const artifacts = data.artifacts || [];
+
+      for (let i = 0; i < artifacts.length; i++) {
+        const a = artifacts[i];
+        // Insert collection
+        const { data: inserted } = await (supabase.from('shikai_collections') as any).insert([{
+          title: a.title,
+          series: a.series || null,
+          freq: a.freq || null,
+          lore: a.lore || null,
+          folder: a.folder || null,
+          is_new: false,
+          is_visible: true,
+          sort_order: artifacts.length - i,
+        }]).select();
+
+        if (inserted && inserted[0]) {
+          const collectionId = inserted[0].id;
+          const imageRows = (a.images || []).map((img: any, idx: number) => ({
+            collection_id: collectionId,
+            file_url: `${basePath}/${a.folder}/${img.file}`,
+            prompt: img.prompt || null,
+            sort_order: idx,
+          }));
+          if (imageRows.length > 0) {
+            await (supabase.from('shikai_images') as any).insert(imageRows);
+          }
+        }
+      }
+      await fetchData();
+    } catch (err) {
+      alert('Error seeding: ' + (err as Error).message);
+    }
+    setSeeding(false);
+  };
+
   const toggleVisibility = async (id: string, currentVisibility: boolean) => {
     await (supabase.from('shikai_collections') as any).update({ is_visible: !currentVisibility }).eq('id', id);
-    fetchData();
+    setCollections(prev => prev.map(c => c.id === id ? { ...c, is_visible: !currentVisibility } : c));
   };
 
   const deleteCollection = async (id: string, title: string) => {
     if (window.confirm(`Delete "${title}" and all its images? This cannot be undone.`)) {
+      // Delete images first, then collection
+      await (supabase.from('shikai_images') as any).delete().eq('collection_id', id);
       await (supabase.from('shikai_collections') as any).delete().eq('id', id);
       fetchData();
     }
@@ -53,49 +98,40 @@ const AdminShikai: React.FC = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin size-8 border-4 border-primary border-t-transparent rounded-full"></div>
-      </div>
-    );
+    return <div className="flex justify-center items-center h-64"><div className="animate-spin size-8 border-4 border-primary border-t-transparent rounded-full"></div></div>;
   }
 
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-black font-display uppercase tracking-tight">Shikai Forge</h1>
-          <p className="text-slate-400 mt-1">{collections.length} collections deployed across the multiverse.</p>
+          <h1 className="text-3xl font-black font-display uppercase tracking-tight">Shikai Collections</h1>
+          <p className="text-slate-400 mt-1">{collections.length} collections in the database.</p>
         </div>
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-2"
-        >
+        <button onClick={() => setShowForm(!showForm)} className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-2">
           <span className="material-symbols-outlined">{showForm ? 'close' : 'add'}</span>
           {showForm ? 'Cancel' : 'New Collection'}
         </button>
       </div>
 
-      {/* Create Form */}
       {showForm && (
         <form onSubmit={handleCreate} className="bg-card-dark border border-primary/30 rounded-2xl p-8 space-y-4">
-          <h3 className="text-lg font-bold text-white font-display uppercase">Deploy New Collection</h3>
+          <h3 className="text-lg font-bold text-white font-display uppercase">New Collection</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input name="title" value={formData.title} onChange={e => setFormData(p => ({ ...p, title: e.target.value }))} placeholder="Collection Title" required className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
-            <input name="series" value={formData.series} onChange={e => setFormData(p => ({ ...p, series: e.target.value }))} placeholder="Series (optional)" className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
-            <input name="freq" value={formData.freq} onChange={e => setFormData(p => ({ ...p, freq: e.target.value }))} placeholder="Frequency (e.g. 33.3Hz)" className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
-            <input name="folder" value={formData.folder} onChange={e => setFormData(p => ({ ...p, folder: e.target.value }))} placeholder="Folder path" className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
+            <input value={formData.title} onChange={e => setFormData(p => ({ ...p, title: e.target.value }))} placeholder="Collection Title" required className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
+            <input value={formData.series} onChange={e => setFormData(p => ({ ...p, series: e.target.value }))} placeholder="Series (optional)" className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
+            <input value={formData.freq} onChange={e => setFormData(p => ({ ...p, freq: e.target.value }))} placeholder="Frequency (e.g. 33.3Hz)" className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
+            <input value={formData.folder} onChange={e => setFormData(p => ({ ...p, folder: e.target.value }))} placeholder="Folder path" className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary transition-all" />
           </div>
-          <textarea name="lore" value={formData.lore} onChange={e => setFormData(p => ({ ...p, lore: e.target.value }))} placeholder="Collection lore..." rows={3} className="w-full bg-background-dark border border-border-dark rounded-xl p-4 text-white focus:outline-none focus:border-primary transition-all resize-none" />
-          <button type="submit" className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all">Deploy Collection</button>
+          <textarea value={formData.lore} onChange={e => setFormData(p => ({ ...p, lore: e.target.value }))} placeholder="Collection lore..." rows={3} className="w-full bg-background-dark border border-border-dark rounded-xl p-4 text-white focus:outline-none focus:border-primary transition-all resize-none" />
+          <button type="submit" className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all">Create Collection</button>
         </form>
       )}
 
       {/* Collections Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {collections.map(col => (
-          <div key={col.id} className="bg-card-dark border border-border-dark rounded-2xl overflow-hidden hover:border-primary/50 transition-colors group">
-            {/* Preview */}
+          <div key={col.id} className={`bg-card-dark border rounded-2xl overflow-hidden hover:border-primary/50 transition-colors group ${col.is_visible ? 'border-border-dark' : 'border-red-500/20 opacity-60'}`}>
             <div className="aspect-video bg-background-dark relative overflow-hidden">
               {col.images.length > 0 ? (
                 <img src={col.images[0].file_url} alt={col.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
@@ -110,7 +146,6 @@ const AdminShikai: React.FC = () => {
               </div>
             </div>
 
-            {/* Info */}
             <div className="p-5 space-y-3">
               <div className="flex items-start justify-between gap-2">
                 <div>
@@ -140,9 +175,14 @@ const AdminShikai: React.FC = () => {
       </div>
 
       {collections.length === 0 && (
-        <div className="p-16 text-center text-slate-500 bg-card-dark border border-border-dark rounded-2xl">
-          <span className="material-symbols-outlined text-5xl mb-4 block">image_not_supported</span>
-          No collections found. Deploy your first Shikai realm.
+        <div className="p-16 text-center bg-card-dark border border-border-dark rounded-2xl space-y-4">
+          <span className="material-symbols-outlined text-5xl text-slate-500 block">image</span>
+          <p className="text-slate-400">No collections in the database. The public site shows fallback data from shikai.json.</p>
+          <button onClick={seedFromJson} disabled={seeding} className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2 mx-auto disabled:opacity-50">
+            <span className="material-symbols-outlined">{seeding ? 'refresh' : 'download'}</span>
+            {seeding ? 'Importing collections...' : 'Import from shikai.json'}
+          </button>
+          <p className="text-xs text-slate-600">This will import all {28} collections with their images from the local JSON file.</p>
         </div>
       )}
     </div>
