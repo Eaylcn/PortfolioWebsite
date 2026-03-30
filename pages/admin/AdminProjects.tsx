@@ -12,7 +12,15 @@ const AdminProjects: React.FC = () => {
 
   const fetchProjects = async () => {
     setLoading(true);
-    const { data } = await supabase.from('projects').select('*').order('sort_order', { ascending: true });
+    // Ensure we have an active auth session so RLS sees us as authenticated
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      console.warn('No active session — projects may be filtered by RLS');
+    }
+    const { data, error } = await supabase.from('projects').select('*').order('sort_order', { ascending: true });
+    if (error) {
+      console.error('Fetch projects error:', error);
+    }
     setProjects((data as unknown as Project[]) || []);
     setLoading(false);
   };
@@ -29,9 +37,13 @@ const AdminProjects: React.FC = () => {
       }
     }
 
-    const { error } = await (supabase.from('projects') as any).update({ [field]: !currentValue }).eq('id', id);
+    const updatePayload = { [field]: !currentValue };
+    const { error } = await (supabase.from('projects') as any)
+      .update(updatePayload)
+      .eq('id', id);
     if (error) {
-      alert(`Toggle failed: ${error.message}\n\nMake sure you ran the RLS fix SQL in Supabase.`);
+      console.error('Toggle error:', error);
+      alert(`Toggle failed: ${error.message}\n\nCode: ${error.code}\nDetails: ${error.details}\n\nMake sure:\n1. You ran supabase-fix.sql (v3)\n2. You are logged in`);
       return;
     }
     // Optimistic update + clear public cache
