@@ -5,7 +5,7 @@ import type { Experience, Certification, Reference, Stat, StoryChapter, TechStac
 const cache: Record<string, { data: any; timestamp: number }> = {};
 const CACHE_TTL = 5 * 60 * 1000;
 
-function useCachedQuery<T>(key: string, table: string) {
+function useCachedQuery<T>(key: string, table: string, filterVisible?: boolean) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,9 +17,15 @@ function useCachedQuery<T>(key: string, table: string) {
       return;
     }
 
-    supabase
+    let query = supabase
       .from(table)
-      .select('*')
+      .select('*');
+    
+    if (filterVisible) {
+      query = query.eq('is_visible', true);
+    }
+    
+    query
       .order('sort_order', { ascending: true })
       .then(({ data: result }) => {
         setData((result as T[]) || []);
@@ -32,15 +38,15 @@ function useCachedQuery<T>(key: string, table: string) {
 }
 
 export function useExperiences() {
-  return useCachedQuery<Experience>('experiences', 'experiences');
+  return useCachedQuery<Experience>('experiences', 'experiences', true);
 }
 
 export function useCertifications() {
-  return useCachedQuery<Certification>('certifications', 'certifications');
+  return useCachedQuery<Certification>('certifications', 'certifications', true);
 }
 
 export function useReferences() {
-  return useCachedQuery<Reference>('references_list', 'references_list');
+  return useCachedQuery<Reference>('references_list', 'references_list', true);
 }
 
 export function useStats() {
@@ -52,5 +58,5 @@ export function useStoryChapters() {
 }
 
 export function useTechStack() {
-  return useCachedQuery<TechStackItem>('tech_stack', 'tech_stack');
+  return useCachedQuery<TechStackItem>('tech_stack', 'tech_stack', true);
 }

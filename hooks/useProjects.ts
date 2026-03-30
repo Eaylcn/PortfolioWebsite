@@ -41,6 +41,7 @@ export function useProjects(category?: 'game' | 'mobile' | 'web') {
     let query = supabase
       .from('projects')
       .select('*')
+      .eq('is_visible', true)
       .order('sort_order', { ascending: true });
 
     if (category) {
@@ -77,6 +78,7 @@ export function useFeaturedProjects() {
     supabase
       .from('projects')
       .select('*')
+      .eq('is_visible', true)
       .eq('is_featured', true)
       .order('sort_order', { ascending: true })
       .then(({ data }) => {
@@ -113,6 +115,7 @@ export function useProject(slug: string | undefined) {
       .from('projects')
       .select('*')
       .eq('slug', slug)
+      .eq('is_visible', true)
       .single()
       .then(({ data, error: err }) => {
         if (err) {

@@ -26,6 +26,7 @@ export function useShikaiCollections() {
       const { data: cols, error: colErr } = await supabase
         .from('shikai_collections')
         .select('*')
+        .eq('is_visible', true)
         .order('sort_order', { ascending: false });
 
       if (colErr) {
