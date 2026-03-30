@@ -2,12 +2,12 @@ import { Project } from './types/database';
 
 export const USER_KNOWLEDGE = {
   name: "Emir Ata Yalcin",
-  role: "Game Developer & Product Manager",
+  role: "Product Manager | Gaming & Tech",
   email: "eaylcn.business@gmail.com",
   linkedin: "https://linkedin.com/in/emir-ata-yalcin",
   github: "https://github.com/Eaylcn",
   location: "Istanbul, Turkey",
-  identity: "Software engineering graduate with a passion for building games and managing digital products. I bridge technical rigor with creative game design and product strategy.",
+  identity: "Product Manager with a software engineering background and three years of QA discipline. I combine deep user empathy — built from years of finding problems before users do — with hands-on technical execution and a passion for gaming products. I don't just plan features; I build, test, and ship them.",
   education: {
     degree: "Bachelor's Degree in Software Engineering",
     institution: "Bahçeşehir University",
@@ -20,34 +20,34 @@ export const USER_KNOWLEDGE = {
     ]
   },
 
-  philosophy: "Great products emerge from technical discipline combined with creative vision. I aim to build engaging games and intuitive digital architectures that leave a lasting impact.",
+  philosophy: "The best products are built by people who understand both the user's frustration and the engineer's constraints. My QA background taught me to think like a user about to have a bad experience — and my PM mindset turns that insight into better products.",
 
   character_traits: {
-    positive: ["Curious", "Patient", "System-oriented", "Detail-focused"],
-    limitations: ["Low tolerance for unstable code", "Prefers technical depth over surface-level metrics"]
+    positive: ["User-focused", "Data-driven", "Technically hands-on", "Detail-oriented"],
+    limitations: ["Low tolerance for vague requirements", "Prefers depth over surface-level metrics"]
   },
 
   personal_lore: {
     companion: "Lili - A loyal Toy Poodle familiar who oversees the daily creative rituals.",
     inspiration: "Tuana - The key source of support and motivation during high-stakes development cycles.",
-    approach: "Vibecoding - Infusing creative flow and emotional resonance into robust technical frameworks."
+    approach: "Agentic Coding - Leveraging Generative AI as a pair-programming partner to accelerate product development and iteration."
   },
 
   hobbies: [
-    "Combat system analysis",
-    "Card strategy game design",
-    "Digital artifact collection",
+    "Product teardowns & competitive analysis",
+    "Game economy design",
+    "AI-assisted prototyping",
     "Graphic design"
   ],
 
-  likes: ["Game mechanics", "Deep lore", "Clean UI/UX", "Strategy game design", "Product optimization"],
-  dislikes: ["Unstable gameplay", "Superficial systems", "Lack of clear product vision"],
+  likes: ["Clear product vision", "User-centric design", "Data-informed decisions", "Game design systems", "Rapid prototyping with AI"],
+  dislikes: ["Feature creep without metrics", "Building without user research", "Lack of clear product strategy"],
 
   skills: {
-    core: ["Game Development", "Product Management", "Software Architecture", "UI/UX Design"],
+    core: ["Product Management", "Product Strategy", "Generative AI & Agentic Coding", "Game Design & Development"],
     testing_and_qa: ["Automation Testing", "Manual Testing", "API Testing"],
     languages: ["C#", "Java", "TypeScript", "Python"],
-    tools: ["Unity", "Unreal Engine", "JIRA", "Figma", "Docker", "Jenkins"]
+    tools: ["JIRA", "Figma", "Unity", "Unreal Engine", "Supabase", "Next.js", "Claude AI"]
   },
 
   // Work Experience Summary

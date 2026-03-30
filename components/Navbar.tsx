@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <h2 className="text-xl font-bold tracking-tight font-display">Emir Ata Yalçın</h2>
-                <span className="text-[10px] text-primary uppercase font-bold tracking-[0.2em] -mt-1">Game Developer & PM</span>
+                <span className="text-[10px] text-primary uppercase font-bold tracking-[0.2em] -mt-1">Product Manager</span>
               </div>
             </Link>
 

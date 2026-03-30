@@ -18,32 +18,38 @@ const FALLBACK_CHAPTERS: Chapter[] = [
     {
         id: '1', title: "The Origin", subtitle: "Where Curiosity Began",
         years: "2010 — 2014", icon: "child_care", sort_order: 1,
-        content: "While many developers started their journey just playing games, mine started by trying to break them. In elementary school, I used tools like Cheat Engine to modify variables in Facebook games. I wanted to understand the mechanism underneath. This curiosity led me to GameMaker Studio in 4th grade, where I created my first top-down fighting game.",
+        content: "Most people in this industry started by playing games. I started by breaking them. In elementary school, I used Cheat Engine to modify variables in Facebook games — not to win, but to figure out how things worked under the hood. By 4th grade, I was making my own top-down fighting game in GameMaker Studio. That curiosity never left me. It just shifted from 'how does this game work?' to 'how do we make this game better for players?'",
         achievement: "First Game Created", achievement_icon: "sports_esports"
     },
     {
-        id: '2', title: "The Training", subtitle: "Forging the Foundation",
+        id: '2', title: "The Foundation", subtitle: "Building the Technical Base",
         years: "2015 — 2021", icon: "school", sort_order: 2,
-        content: "I pursued a Software Engineering degree at Bahcesehir University. During these years, I delved deep into programming fundamentals, algorithms, and software architecture. The academic foundation combined with personal projects shaped my understanding of how complex systems work together.",
+        content: "I pursued a Software Engineering degree at Bahçeşehir University. During these years, I built a solid understanding of programming fundamentals, algorithms, and software architecture. The academic foundation combined with personal projects shaped how I think about complex systems — a skill that would later become essential for product thinking.",
         achievement: "Software Engineering Degree", achievement_icon: "workspace_premium"
     },
     {
-        id: '3', title: "The QA Chapter", subtitle: "The Secret Weapon",
+        id: '3', title: "The QA Discipline", subtitle: "Learning to Think Like the User",
         years: "2021 — 2024", icon: "bug_report", sort_order: 3,
-        content: "My career path led me to Quality Assurance first. I worked as a QA Automation Engineer at companies like Huawei and IBTECH. Although my heart was always in game development, my time in QA became my secret weapon. It taught me how to dissect a problem, foresee potential bugs, and understand the user experience deeply.",
+        content: "I spent three years working in QA at companies like Huawei, IBTECH, and ERIKLABS. Honestly, QA was not my dream job — but it taught me something I could not have learned anywhere else: how to think like a user who is about to have a bad experience. I got really good at finding problems before users do, understanding why something feels off, and communicating those issues clearly to developers. These are the exact same skills I now bring to product thinking.",
         achievement: "QA Mastery Achieved", achievement_icon: "verified"
     },
     {
         id: '4', title: "The Turning Point", subtitle: "Crisis Into Opportunity",
         years: "2024", icon: "local_fire_department", sort_order: 4,
-        content: "I was accepted into a Master's program at Northeastern University, but due to financial difficulties, I had to cancel my enrollment. Instead of letting this stop me, I turned this crisis into a creative opportunity. I focused fully on building my own projects to prove my skills.",
+        content: "I was accepted into a Master's program at Northeastern University, but due to financial difficulties, I had to cancel my enrollment. Instead of letting this stop me, I turned this setback into a creative opportunity. I focused fully on building my own projects to prove my skills — and in doing so, discovered what I truly wanted to do.",
         achievement: "Resilience Built", achievement_icon: "diamond"
     },
     {
-        id: '5', title: "The Builder", subtitle: "Building the Legacy",
-        years: "2024 — Present", icon: "construction", sort_order: 5,
-        content: "I built eaylcn.com, a portfolio with an AI assistant I coded myself. I created Droid Shikai, a Generative AI art universe. I'm developing Tuty, a mobile app for makeup tracking, handling Developer, QA Lead, and Product Owner roles. I also create 3D models in Blender and 2D pixel art in Aseprite.",
-        achievement: "Multi-Project Launch", achievement_icon: "rocket_launch"
+        id: '5', title: "The PM Awakening", subtitle: "Discovering My True Path",
+        years: "2024 — Early 2025", icon: "lightbulb", sort_order: 5,
+        content: "While developing Tuty — a mobile app for tracking makeup inventory — I found myself naturally gravitating toward the product side. I was the developer, QA lead, product owner, and UX designer all at once. I was making real trade-offs, prioritizing features, analyzing user needs, and managing the product end to end. That's when it clicked: I didn't just want to build software. I wanted to own the product vision, define the roadmap, and make the strategic decisions that shape what gets built and why.",
+        achievement: "Product Mindset Unlocked", achievement_icon: "psychology"
+    },
+    {
+        id: '6', title: "The Product Builder", subtitle: "Building the Future with AI",
+        years: "March 2025 — Present", icon: "rocket_launch", sort_order: 6,
+        content: "In March 2025, I fully committed to Product Management. To track my own growth and sharpen my PM skills, I started building an AI-powered analysis tool for Gaming PMs — handling everything from problem discovery to roadmap planning, interface design, and development using Next.js, Supabase, and Generative AI. I embraced Agentic Coding, using AI as a pair-programming partner in my terminal to accelerate development. This portfolio itself was built with the same approach — proving that a PM who understands the technical side can move faster and make better decisions.",
+        achievement: "Full PM Pivot", achievement_icon: "trending_up"
     }
 ];
 
@@ -67,11 +73,11 @@ const Story: React.FC = () => {
                     </div>
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-display uppercase tracking-tight mb-6">
                         From Breaking Games<br />
-                        <span className="text-primary">To Building Them</span>
+                        <span className="text-primary">To Managing Products</span>
                     </h1>
                     <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                        A journey through curiosity, discipline, trials, and creation.
-                        This is the story of how a kid with Cheat Engine became a developer with a vision.
+                        A journey through curiosity, discipline, setbacks, and discovery.
+                        This is the story of how a kid with Cheat Engine became a Product Manager with a vision.
                     </p>
                 </div>
 
@@ -145,9 +151,9 @@ const Story: React.FC = () => {
                 {/* Closing Quote */}
                 <div className="mt-24 text-center border-t border-border-dark/50 pt-16">
                     <blockquote className="text-xl sm:text-2xl text-slate-300 italic font-light max-w-3xl mx-auto leading-relaxed">
-                        "Now, when I code a game in Unity or Unreal Engine, I don't just write code that works;
-                        I write code that is <span className="text-primary font-semibold">robust and optimized</span>,
-                        thanks to my QA mindset."
+                        "A PM who understands what the engineering team actually does
+                        can make <span className="text-primary font-semibold">much better decisions</span>.
+                        That's why I don't just plan — I build."
                     </blockquote>
                     <div className="mt-6 flex items-center justify-center gap-3">
                         <div className="size-10 rounded-full bg-primary/20 flex items-center justify-center">

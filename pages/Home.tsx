@@ -79,7 +79,7 @@ const Home: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              Product Manager | Game Developer
+              Product Manager | Gaming & Tech
             </div>
             {/* Open to Work Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-black uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(34,197,94,0.2)] animate-pulse">
@@ -89,11 +89,11 @@ const Home: React.FC = () => {
           </div>
 
           <h1 className="text-5xl sm:text-7xl md:text-9xl font-black font-display tracking-tight text-white leading-[0.85] drop-shadow-2xl uppercase">
-            Architect of <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-purple-400 animate-gradient-x">Digital Worlds</span>
+            Shaping <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-purple-400 animate-gradient-x">Digital Products</span>
           </h1>
           <p className="text-lg sm:text-2xl text-slate-300 max-w-3xl font-body font-light leading-relaxed mt-4 italic">
-            Bridging technical precision with creative game design and seamless product management.
+            Product Manager with QA discipline, technical depth, and a passion for gaming — turning user insights into products people love.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 mt-6">
             <Link to="/portfolio" className="bg-primary hover:bg-blue-600 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all duration-300 shadow-glow hover:shadow-glow-hover hover:-translate-y-2 flex items-center justify-center gap-2 min-w-[200px] active:scale-95">
