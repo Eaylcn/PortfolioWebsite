@@ -2,9 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import type { TechStackItem } from '../../types/database';
 
+const DEFAULT_TECH_STACK = [
+  { name: 'Selenium', category: 'Automation', icon: 'public', is_visible: true, sort_order: 1 },
+  { name: 'Appium', category: 'Mobile', icon: 'smartphone', is_visible: true, sort_order: 2 },
+  { name: 'Robot Framework', category: 'Automation', icon: 'precision_manufacturing', is_visible: true, sort_order: 3 },
+  { name: 'Cucumber', category: 'BDD', icon: 'eco', is_visible: true, sort_order: 4 },
+  { name: 'Gherkin', category: 'BDD', icon: 'description', is_visible: true, sort_order: 5 },
+  { name: 'RestAssured', category: 'API', icon: 'api', is_visible: true, sort_order: 6 },
+  { name: 'Karate', category: 'API', icon: 'shield', is_visible: true, sort_order: 7 },
+  { name: 'Postman', category: 'API', icon: 'send', is_visible: true, sort_order: 8 },
+  { name: 'Jenkins', category: 'CI/CD', icon: 'cyclone', is_visible: true, sort_order: 9 },
+  { name: 'Docker', category: 'CI/CD', icon: 'box', is_visible: true, sort_order: 10 },
+  { name: 'JIRA', category: 'Management', icon: 'assignment', is_visible: true, sort_order: 11 },
+  { name: 'Java', category: 'Language', icon: 'coffee', is_visible: true, sort_order: 12 },
+  { name: 'C#', category: 'Language', icon: 'terminal', is_visible: true, sort_order: 13 },
+  { name: 'Ember.js', category: 'Frontend', icon: 'web', is_visible: true, sort_order: 14 },
+  { name: 'Unity', category: 'Game Dev', icon: 'deployed_code', is_visible: true, sort_order: 15 },
+];
+
 const AdminTechStack: React.FC = () => {
   const [items, setItems] = useState<TechStackItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [seeding, setSeeding] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ name: '', category: '', icon: 'code' });
@@ -17,6 +36,13 @@ const AdminTechStack: React.FC = () => {
   };
 
   useEffect(() => { fetchItems(); }, []);
+
+  const seedDefaults = async () => {
+    setSeeding(true);
+    await (supabase.from('tech_stack') as any).insert(DEFAULT_TECH_STACK);
+    await fetchItems();
+    setSeeding(false);
+  };
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,15 +83,10 @@ const AdminTechStack: React.FC = () => {
     setItems(prev => prev.map(i => i.id === id ? { ...i, is_visible: !current } : i));
   };
 
-  // Group by category for display
   const categories = [...new Set(items.map(i => i.category))];
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin size-8 border-4 border-primary border-t-transparent rounded-full"></div>
-      </div>
-    );
+    return <div className="flex justify-center items-center h-64"><div className="animate-spin size-8 border-4 border-primary border-t-transparent rounded-full"></div></div>;
   }
 
   return (
@@ -75,10 +96,7 @@ const AdminTechStack: React.FC = () => {
           <h1 className="text-3xl font-black font-display uppercase tracking-tight">Tech Stack</h1>
           <p className="text-slate-400 mt-1">Manage the tools & technologies displayed on the Skills page.</p>
         </div>
-        <button
-          onClick={() => { setShowForm(!showForm); if (showForm) resetForm(); }}
-          className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-2"
-        >
+        <button onClick={() => { setShowForm(!showForm); if (showForm) resetForm(); }} className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-glow hover:shadow-glow-hover flex items-center gap-2">
           <span className="material-symbols-outlined">{showForm ? 'close' : 'add'}</span>
           {showForm ? 'Cancel' : 'Add Tool'}
         </button>
@@ -92,9 +110,7 @@ const AdminTechStack: React.FC = () => {
             <input value={form.category} onChange={e => setForm(p => ({ ...p, category: e.target.value }))} placeholder="Category (e.g. Game Dev)" required className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary" />
             <input value={form.icon} onChange={e => setForm(p => ({ ...p, icon: e.target.value }))} placeholder="Material Icon (e.g. deployed_code)" required className="h-12 bg-background-dark border border-border-dark rounded-xl px-4 text-white focus:outline-none focus:border-primary" />
           </div>
-          <button type="submit" className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all">
-            {editingId ? 'Update' : 'Create'}
-          </button>
+          <button type="submit" className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-xl font-bold transition-all">{editingId ? 'Update' : 'Create'}</button>
         </form>
       )}
 
@@ -128,9 +144,13 @@ const AdminTechStack: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="p-16 text-center text-slate-500 bg-card-dark border border-border-dark rounded-2xl">
-          <span className="material-symbols-outlined text-5xl mb-4 block">inventory_2</span>
-          No tools in the database. Skills page will use default fallback data until you add items here.
+        <div className="p-16 text-center bg-card-dark border border-border-dark rounded-2xl space-y-4">
+          <span className="material-symbols-outlined text-5xl text-slate-500 block">inventory_2</span>
+          <p className="text-slate-400">No tools in the database. The Skills page shows fallback data.</p>
+          <button onClick={seedDefaults} disabled={seeding} className="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-all flex items-center gap-2 mx-auto disabled:opacity-50">
+            <span className="material-symbols-outlined">{seeding ? 'refresh' : 'download'}</span>
+            {seeding ? 'Seeding...' : 'Seed Default Tools'}
+          </button>
         </div>
       )}
     </div>
