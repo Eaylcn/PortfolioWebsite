@@ -74,10 +74,11 @@ export const USER_KNOWLEDGE = {
       { title: "Split Fiction Prototype", genre: "Hybrid Perspective", engine: "Unreal", status: "Experimental", description: "2D to 3D perspective switching R&D" }
     ],
     mobile: [
-      { title: "Tuty", platform: "iOS/Android", status: "In Development", description: "Smart beauty product inventory with barcode scanning and AI assistant Lily" },
+      { title: "Tuty", platform: "iOS/Android", status: "Beta", description: "AI-powered beauty product tracker with smart inventory, expiration alerts, and Lily — an 8-mode AI beauty assistant" },
       { title: "Quantum Agent", platform: "iOS/Android", status: "In Development", description: "Time-travel narrative swipe game with branching decisions" }
     ],
     web: [
+      { title: "Lance Web", status: "Live", description: "AI-powered PM development platform — game analysis, Claude mentorship, interview sim, and career growth tracking" },
       { title: "The Grand Archive", status: "Live", description: "This very portfolio - RPG-themed with AI Data Drake companion" },
       { title: "Khaeltheron", status: "Live", description: "Dark fantasy lore-first digital grimoire and worldbuilding showcase" },
       { title: "PonyFart", status: "Live", description: "Playful experimental web game built with vibecoding approach" }
