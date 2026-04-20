@@ -49,3 +49,16 @@ INSERT INTO projects (
   true,
   12
 );
+
+-- ============ MERGE KINGDOM (ZOO MERGE) — FULL UPDATE ============
+UPDATE projects SET
+  title = 'Merge Kingdom',
+  description = 'A casual Merge-2 mobile game blending village management, strategic unit crafting, and auto-battles against mythical creatures.',
+  long_description = E'Merge Kingdom (formerly known as Zoo Merge) is an expansive casual mobile game that evolves the traditional Merge-2 formula by integrating village building and automated RPG combat. Players act as the ruler of a kingdom, managing a 7x9 grid where they construct facilities, produce resources (gold, food, materials), and train a diverse army of humans, elves, dwarves, and orcs.\n\nThe core loop revolves around merging base items to upgrade them, which are then used in the Portal to craft fully armed soldiers. These units are deployed in tactical auto-battles against a progression of enemies and bosses. Designed as a showcase of Advanced Agentic Coding, the game is built entirely in Unity with C# through LLM pair-programming. It features a highly modular architecture using a custom ScriptableObject framework, an extensive Object Pooling system managing a dual-board 126-slot grid, and robust managers handling procedurally generated orders, complex item synergies, and continuous backend production calculations.',
+  tags = ARRAY['Unity', 'C#', 'Merge-2', 'Agentic Coding', 'RPG'],
+  tech_stack = ARRAY['Unity', 'C#', 'Generative AI', 'Mobile UI/UX', 'ScriptableObjects', 'Object Pooling', 'DOTween', 'JSON Serialization'],
+  features = ARRAY['Drag & drop Merge-2 mechanics with smart hint system', 'Dual-board system: Main Village for production and Portal for combat', 'Village management with 7 distinct building types and auto-generators', 'Deep crafting system: Base Soldier + Equipment = Combat-ready unit', 'Auto-battle combat system with stage-based progression and Boss fights', 'Intricate synergy mechanics based on unit race (Elf, Dwarf, etc.) and class', 'Rune and healing potion systems via stackable modifier items', 'Dynamic merchant, stash management, and procedural order systems'],
+  systems = ARRAY['Extensive Object Pooling system handling 126 active slots across two boards', 'Custom ScriptableObject-driven architecture for items, units, rules and synergies', 'Clean DRY implementation with abstract BaseGridManager for dual boards', 'Robust Save/Load system utilizing JSON and PlayerPrefs for board state', 'ProductionManager to simulate logic for active and passive boards', 'UI Culling and rendering subsystem for background grid optimization'],
+  roadmap = ARRAY['Phase 1: Village & Production System (Buildings, Generators, Economics)', 'Phase 2: Portal Combat & Rune System (Auto-battles, Loot, Synergies)', 'Phase 3: Balance & Game Depth (Scaling difficulty, Advanced Synergies)', 'Phase 4: Endgame Metagame (Hero System, Gacha Mechanics, Hero Skills)', 'Phase 5: PvP & Live Ops Content'],
+  updated_at = now()
+WHERE slug = 'zoo-merge';
