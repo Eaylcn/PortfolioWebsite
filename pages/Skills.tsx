@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { USER_KNOWLEDGE } from '../constants';
 import { useStats, useExperiences, useCertifications, useTechStack } from '../hooks/useData';
+import { useFeaturedProjects } from '../hooks/useProjects';
 
 const FALLBACK_ARSENAL = [
   { name: 'Selenium', category: 'Automation', icon: 'public' },
@@ -24,11 +25,13 @@ const FALLBACK_ARSENAL = [
 
 const Skills: React.FC = () => {
   const [showAllExperience, setShowAllExperience] = useState(false);
+  const [projectsExpanded, setProjectsExpanded] = useState(true);
 
   const { data: stats, loading: statsLoading } = useStats();
   const { data: experiences, loading: expLoading } = useExperiences();
   const { data: certifications, loading: certLoading } = useCertifications();
   const { data: dbTechStack } = useTechStack();
+  const { projects: featuredProjects } = useFeaturedProjects();
 
   const arsenalItems = dbTechStack.length > 0
     ? dbTechStack.map(t => ({ name: t.name, category: t.category, icon: t.icon }))
@@ -228,6 +231,108 @@ const Skills: React.FC = () => {
               </div>
             </div>
           </section>
+
+          {/* FEATURED PROJECTS (Collapsable) */}
+          {featuredProjects.length > 0 && (
+            <section className="bg-card-dark p-12 rounded-[4.5rem] border border-border-dark shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+                <span className="material-symbols-outlined text-[150px]">rocket_launch</span>
+              </div>
+              <button
+                onClick={() => setProjectsExpanded(!projectsExpanded)}
+                className="w-full flex items-center justify-between mb-0 group/toggle"
+              >
+                <h2 className="text-3xl font-black text-white font-display flex items-center gap-4 uppercase tracking-tighter">
+                  <span className="material-symbols-outlined text-primary text-4xl">work</span>
+                  PROJECTS
+                </h2>
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest rounded-lg border border-primary/20">
+                    {featuredProjects.length} Featured
+                  </span>
+                  <span className={`material-symbols-outlined text-slate-400 group-hover/toggle:text-primary transition-all duration-300 ${projectsExpanded ? 'rotate-180' : ''}`}>
+                    expand_more
+                  </span>
+                </div>
+              </button>
+
+              <div className={`transition-all duration-500 ease-in-out overflow-hidden ${projectsExpanded ? 'max-h-[2000px] opacity-100 mt-10' : 'max-h-0 opacity-0 mt-0'}`}>
+                <div className="space-y-6">
+                  {featuredProjects.map((project) => {
+                    const detailPath = project.category === 'game' ? `/games/${project.slug}` : project.category === 'mobile' ? `/mobile/${project.slug}` : `/web/${project.slug}`;
+                    const links = (project.links && typeof project.links === 'object' && !Array.isArray(project.links)) ? project.links as Record<string, string> : {};
+                    const liveUrl = links.live || links.github || null;
+
+                    return (
+                      <div key={project.id} className="relative p-6 sm:p-8 bg-background-dark/40 border border-white/5 rounded-3xl hover:border-primary/30 transition-all group/card">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-3 flex-wrap mb-2">
+                              <Link
+                                to={detailPath}
+                                className="text-xl sm:text-2xl font-black text-white font-display uppercase tracking-tight hover:text-primary transition-colors"
+                              >
+                                {project.title}
+                              </Link>
+                              <span className={`px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest border ${
+                                project.status === 'Live' ? 'bg-green-500/10 text-green-400 border-green-500/30' :
+                                project.status === 'Beta' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30' :
+                                'bg-blue-500/10 text-blue-400 border-blue-500/30'
+                              }`}>
+                                {project.status}
+                              </span>
+                            </div>
+                            <p className="text-slate-400 text-sm leading-relaxed font-light">
+                              {project.description}
+                            </p>
+                          </div>
+                          <div className="flex gap-2 shrink-0">
+                            {liveUrl && (
+                              <a
+                                href={liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="size-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all"
+                                title="Visit"
+                              >
+                                <span className="material-symbols-outlined text-[18px]">open_in_new</span>
+                              </a>
+                            )}
+                            <Link
+                              to={detailPath}
+                              className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all"
+                              title="View Details"
+                            >
+                              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </Link>
+                          </div>
+                        </div>
+                        {project.tags && project.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {project.tags.map((tag, i) => (
+                              <span key={i} className="px-3 py-1 bg-white/5 text-slate-500 text-[10px] font-bold uppercase tracking-widest rounded-lg border border-white/5">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-6 flex justify-center">
+                  <Link
+                    to="/portfolio"
+                    className="px-8 py-3 bg-white/5 hover:bg-primary/10 text-slate-400 hover:text-primary border border-white/10 hover:border-primary/30 rounded-2xl font-black text-xs uppercase tracking-widest transition-all flex items-center gap-3"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">grid_view</span>
+                    View All Projects
+                  </Link>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* QUEST HISTORY (Expandable Experience) */}
           <section className="bg-card-dark p-12 rounded-[4.5rem] border border-border-dark shadow-2xl relative overflow-hidden group">
