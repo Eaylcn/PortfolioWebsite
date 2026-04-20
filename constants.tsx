@@ -3,11 +3,11 @@ import { Project } from './types/database';
 export const USER_KNOWLEDGE = {
   name: "Emir Ata Yalcin",
   role: "Product Manager | Gaming & Tech",
-  email: "eaylcn.business@gmail.com",
+  email: "eaylcn@gmail.com",
   linkedin: "https://linkedin.com/in/emir-ata-yalcin",
   github: "https://github.com/Eaylcn",
   location: "Istanbul, Turkey",
-  identity: "Product Manager with a software engineering background and three years of QA discipline. I combine deep user empathy — built from years of finding problems before users do — with hands-on technical execution and a passion for gaming products. I don't just plan features; I build, test, and ship them.",
+  identity: "Game-obsessed Software Engineering graduate with 3 years of QA experience across fintech, telecom and SaaS. Now fully pivoting to Game Product Management. I built Lance, an AI-powered PM tool for gaming, from scratch to prove I can think like a PM. I design game systems (currently building a casual mobile game in Unity), write GDDs and ship products end-to-end. I understand what breaks a game before players do and I know how to fix it.",
   education: {
     degree: "Bachelor's Degree in Software Engineering",
     institution: "Bahçeşehir University",
@@ -20,7 +20,7 @@ export const USER_KNOWLEDGE = {
     ]
   },
 
-  philosophy: "The best products are built by people who understand both the user's frustration and the engineer's constraints. My QA background taught me to think like a user about to have a bad experience — and my PM mindset turns that insight into better products.",
+  philosophy: "I design game systems, write GDDs and ship products end-to-end. My QA background taught me to think like a user about to have a bad experience — and my PM mindset turns that insight into better products. I understand what breaks a game before players do and I know how to fix it.",
 
   character_traits: {
     positive: ["User-focused", "Data-driven", "Technically hands-on", "Detail-oriented"],
@@ -52,8 +52,8 @@ export const USER_KNOWLEDGE = {
 
   // Work Experience Summary
   experience: [
-    { company: "ERIKLABS", role: "Test Engineer / QA Engineer", period: "2024-2025", focus: "Mobile stock trading app automation, Cucumber BDD, API testing with RestAssured and Karate" },
-    { company: "BLUECLOUD", role: "Associate Test Engineer", period: "2023-2024", focus: "InXpress project, BDD automation, Jenkins CI/CD, regression and smoke testing" },
+    { company: "ERIKLABS", role: "QA Engineer", period: "2024-2025", focus: "Mobile stock trading app automation, Cucumber BDD, API testing with RestAssured and Karate" },
+    { company: "BLUECLOUD", role: "Associate QA Engineer", period: "2023-2024", focus: "InXpress project, BDD automation, Jenkins CI/CD, regression and smoke testing" },
     { company: "FEEDBACKFRUITS", role: "QA Automation Engineer Trainee", period: "2023", focus: "Frontend testing with Ember.js, UI acceptance tests" },
     { company: "HUAWEI", role: "QA Automation Engineer Intern", period: "2022-2023", focus: "QuickApp IDE mobile testing, DeviceFarmer with Docker" },
     { company: "IBTECH", role: "QA Automation Engineer Intern", period: "2022", focus: "Selenium, Appium, Robot Framework setup and execution" }
